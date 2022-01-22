@@ -23,13 +23,13 @@ const NavigationBar = () => {
                                 <NavLink className="nav-link navlink-active" aria-current="page" to="#">Home</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="#">Features</NavLink>
+                                <NavLink className="nav-link" to="#">Jobs List</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="#">Pricing</NavLink>
+                                <NavLink className="nav-link" to="#">My Profile</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="#">Pricing</NavLink>
+                                <NavLink className="nav-link" to="#">Logout</NavLink>
                             </li>
 
                         </ul>

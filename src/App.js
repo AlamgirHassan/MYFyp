@@ -15,6 +15,10 @@ import RecruiterRegisteration from './components/CandidateRegisteration/Recruite
 import JobsList from './components/Jobs_List/JobsList';
 import AppliedCandidatesList from './components/JobCandidateListResponse/AppliedCandidatesList';
 import Not_Found from './components/NotFound/NotFound';
+import JobPostingForm from './components/JobPostingForm/JobPostingForm';
+import CandidateProfile from "./components/UserProfile/CandidateProfile"
+import Recruiterprofile from './components/UserProfile/RecruiterProfile';
+import ChangePssword from './components/UserProfile/ChangePassword';
 function App() {
   return (
     <BrowserRouter>
@@ -31,6 +35,11 @@ function App() {
         <Route  exact path="/reditform" element={<RecruiterEditInformation/>}/>
         <Route  exact path="/jobslist" element={<JobsList/>}/>
         <Route  exact path="/candidatelist" element={<AppliedCandidatesList/>}/>
+        <Route exact path="/jform" element={<JobPostingForm/>}/>
+        <Route exact path="/cprofile" element={<CandidateProfile/>}/>
+        <Route exact path="/rprofile" element={<Recruiterprofile/>}/>
+        <Route exact path="/cpass" element={<ChangePssword/>}/>
+
         <Route path="*" element={<Not_Found/>}/>
 
  
