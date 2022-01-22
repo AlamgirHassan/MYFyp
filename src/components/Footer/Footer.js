@@ -8,8 +8,10 @@ const Footer = () => {
 
         <>
             <div className='container-fluid my-footer'>
-                <br></br>
-                <br></br>
+                <br>
+                </br>
+                <br>
+                </br>
                 <div class="row">
                     <div class="col-md-7">
                         <div class="row">
