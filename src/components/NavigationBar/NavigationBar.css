@@ -1,0 +1,48 @@
+.navbar-brand
+{
+    margin:0%5%;
+
+    font-size: x-large;
+}
+
+.navbar-brand-span
+{
+color: red;
+margin: 0%5%;
+}
+.show>.dropdown-menu {
+    display: block;
+    position: absolute;
+  }
+.nav-link:hover
+{
+    border-bottom: solid;
+    border-color:orange;
+}
+.navlink-active
+{
+    border-bottom: solid;
+    border-color:white;
+}
+.navbar-nav
+{
+    margin: 0%5%;
+ 
+}
+.navbar-item
+{
+    margin:0%5%;
+}
+.navbar-nav > li{
+    margin-left:30px;
+    margin-right:30px;
+  }
+
+
+
+  @media only screen and (max-width: 650px) {
+    .navlink-active,.nav-link:hover {
+      border-bottom: none;
+    }
+  }
+

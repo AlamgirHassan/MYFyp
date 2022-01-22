@@ -1,0 +1,36 @@
+*
+{
+    margin:0%0%;
+    padding:0%0%;
+}
+
+.heading
+{
+    margin:50%0%;
+    
+}
+
+.loginForm
+{
+    margin:15%5%;
+    background: #fff;
+    border: 1px solid #dddfe2;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.logo_pic
+{
+    height: 150px;
+    width:200px;
+}
+.my-image
+{
+    height:100%;
+    width:100%;
+    
+ 
+}

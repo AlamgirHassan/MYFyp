@@ -1,0 +1,262 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
+
+
+.container1
+{
+    background-image: url("../../images/professional.jpg");
+    background-size: cover;
+    background-position: top;
+    min-height: 100%;
+    height: 90vh;
+    
+    
+}
+
+.picheading1
+{
+    
+    color: white;
+
+  position: relative;
+  top: 50%;
+text-align: center;
+
+  
+
+    
+}
+.input-group
+{filter: brightness(100%);
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    
+}
+
+.input-group input
+{
+    
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.input-group input
+{
+    width:300px;
+}
+.input-group> button
+{
+
+margin-left: auto;
+margin-right: auto;
+}
+.jobsheading
+{
+    margin:5%10%;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    display: inline;
+   
+}
+.jobsheading1
+{
+    margin:5%10%;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    display: inline;
+   
+}
+.vertical {
+    border-left: 1px solid silver;
+    height: 50px;
+
+    left: 40%;
+    display: inline;
+}
+
+.listed-components
+{
+    display: inline;
+ 
+}
+.components
+{
+    margin: 5%0%;
+}
+.anchortag
+{
+    margin: 0%2%;
+    text-decoration: none;
+    color: #0033cc;
+}
+.card-img
+{
+    width:100%;
+    height:180px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card
+{
+    width: 400px;
+}
+.container .row
+{
+    margin-top: 20px;
+}
+.categories
+{
+    background:url("../../images/blue_img1.jfif");
+    background-size: cover;
+    
+}
+.row-divider
+{
+    background-color: white;
+}
+.categories_images
+{
+    width:300px;
+    height:150px;
+    display: block;
+    transition:.3s;
+    margin:1px;
+    padding: 2px;
+}
+.image
+{
+    position: relative;
+    margin: 2%1%;
+    background-color: white;
+
+    transition:.3s;
+    border-radius:4px;
+    
+}
+
+
+  
+  .image:hover .overlay {
+    opacity: 0.5;
+  }
+
+  
+  .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 55%;
+    left: 75%;
+
+    text-align: center;
+  }
+
+  
+
+  .image:hover .categories_images{
+    filter:blur(8px) brightness(20%);
+    box-shadow:0 0 16px cyan;
+    background-color: black;
+  }
+   
+  .image :not(img){
+    position:absolute;
+    z-index:1;
+    top:30%;
+    width:100%;
+    text-align:center;
+    color:#fff;
+    opacity:0;
+    transition:.3s;
+  }
+ 
+  .image:hover :not(.categories_images){
+    opacity:1;
+  }
+
+.jobs_container
+{
+    background-color:   #e0e0eb;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 5px;
+    padding: 1%1%;
+}
+.eg1
+{
+    background: url("../../images/gradient-dynamic-blue-lines-background_23-2148995756.jpg");
+    background-size: cover;
+    
+}
+.heading1
+{
+    color: white;
+    text-align: center;
+   margin: 3%5%;
+}
+.heading2
+{
+    color: white;
+    text-align: center;
+
+   margin: 3%5%;
+}
+
+.container-block{
+   display: inline;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn
+{
+    margin:0px 5px;
+}
+
+
+@media only screen and (max-width: 650px) {
+    .jobsheading {
+      margin:5%4%;
+    }
+    .anchortag
+    {
+        margin: 0%1%;
+        font-size: small;
+    }
+    .card
+    {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+    }
+
+    .categories_images
+    {
+        width:200px;
+        height: 100px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+ 
+    }   
+    .row-divider
+    {
+        display: none;
+    }
+    .input-group input
+    {
+        width:200px;
+    }
+    .card
+    {   
+        width: 300px;
+    }
+    
+   
+  }

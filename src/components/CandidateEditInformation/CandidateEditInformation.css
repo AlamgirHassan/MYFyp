@@ -1,0 +1,39 @@
+.edituserimg
+{
+    display: block;
+    margin-top: 50px;
+}
+.edituserform
+{
+    margin-top: 100px;
+}
+.edituserform form
+{
+   
+    padding:3%3%;
+    margin:2%3%;
+    background: #fff;
+    border: 1px solid #dddfe2;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+}
+.edtuserimage
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height:150px;
+    width:150px;
+}
+.edituserimg h3
+{
+    text-align: center;
+    margin: 3%0%;
+}
+.edituserimg input
+{
+    margin: 3%5%;
+}

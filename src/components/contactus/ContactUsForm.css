@@ -1,0 +1,40 @@
+
+
+.myformcontainer
+{
+    background-color: white;
+    border-radius: 9px;
+    margin-top: 60px;
+}
+.formimage
+{
+    height:350px;
+    width:350px;
+    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.contactformheading
+{
+    text-align: center;
+    font-weight: bold;
+}
+.contactformcontainer
+{
+    margin:12%0;
+}
+
+
+.contactformcontainer button
+{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 25px;
+}
+.contactformcontainer button:hover
+{
+    background-color: black;
+}
