@@ -55,7 +55,7 @@ const Home = () => {
                     <div className="listed-components">
                         <h1 className="jobsheading">Latest Jobs</h1>
                         <div className="vertical"></div>
-                        <a className='anchortag'>VIEW ALL JOBS &#8594;</a>
+                        <NavLink to="/jobslist" className='anchortag'>VIEW ALL JOBS &#8594;</NavLink>
 
                     </div>
 
@@ -75,7 +75,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <button type='button' className="btn btn-secondary card-btn">Check Info</button>
+                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <button type='button' className="btn btn-secondary card-btn">Check Info</button>
+                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <button type='button' className="btn btn-secondary card-btn">Check Info</button>
+                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <button type='button' className="btn btn-secondary card-btn">Check Info</button>
+                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <button type='button' className="btn btn-secondary card-btn">Check Info</button>
+                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <button type='button' className="btn btn-secondary card-btn">Check Info</button>
+                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -154,8 +154,11 @@ const Home = () => {
 
 
 
+                 
+                    <NavLink to="/jobslist" className="btn btn-primary btn-lg-primary jobsbutton">Check All Listed Jobs</NavLink>
                     <br></br>
 
+                    <br></br>
 
                 </div>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import NavigationBar from '../NavigationBar/NavigationBar'
 import img1 from '../../images/cover_img.jpg'
 import "./CandidateProfile.css"
+import Footer from '../Footer/Footer';
 const Recruiterprofile = () => {
   return <>
   <NavigationBar/>
@@ -39,8 +40,10 @@ const Recruiterprofile = () => {
                 <label className='form-label ps-5 col-md-8' id='Caddress'>Country here</label>
             </div>
         </div>
-        <br></br>
+        
     </div>
+    <br></br>
+    <Footer/>
   </>;
 };
 

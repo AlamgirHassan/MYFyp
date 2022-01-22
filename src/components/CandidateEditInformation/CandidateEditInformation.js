@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import android from "../../images/android.png"
 import "./CandidateEditInformation.css"
+import NavigationBar from '../NavigationBar/NavigationBar';
+import Footer from '../Footer/Footer';
 const CandidateEditInformation = () => {
 
 
@@ -30,9 +32,10 @@ const CandidateEditInformation = () => {
 
 
         <>
-
+        <NavigationBar/>
             <div className='container'>
                 <div className='edituserform'>
+                <a href="cprofile" className="edituserbackpage"> &#8592; Back to my Profile</a>
                     <form>
                         <div className='edituserimg'>
 
@@ -368,7 +371,7 @@ const CandidateEditInformation = () => {
             </div>
 
 
-
+            <Footer/>
 
         </>
 

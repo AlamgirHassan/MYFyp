@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.css'
 import "./JobsList.css"
 import img from "../../images/mercedescl600.jpg"
@@ -29,7 +30,7 @@ const JobsList = () => {
                                 </div>
                                 <br></br>
 
-                                <button type='button' className="btn btn-primary card-btn">Apply Now</button>
+                                <NavLink type='button' to="/jobdetail" className="btn btn-primary card-btn">Apply Now</NavLink>
                             </div>
                         </div>
                     </div>
@@ -46,7 +47,7 @@ const JobsList = () => {
                                 </div>
                                 <br></br>
 
-                                <button type='button' className="btn btn-primary card-btn">Apply Now</button>
+                                <NavLink type='button' to="/jobdetail" className="btn btn-primary card-btn">Apply Now</NavLink>
                             </div>
                         </div>
                     </div>
@@ -63,7 +64,7 @@ const JobsList = () => {
                                 </div>
                                 <br></br>
 
-                                <button type='button' className="btn btn-primary card-btn">Apply Now</button>
+                                <NavLink type='button' to="/jobdetail" className="btn btn-primary card-btn">Apply Now</NavLink>
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,7 @@ const JobsList = () => {
                                 </div>
                                 <br></br>
 
-                                <button type='button' className="btn btn-primary card-btn">Apply Now</button>
+                                <NavLink type='button' to="/jobdetail" className="btn btn-primary card-btn">Apply Now</NavLink>
                             </div>
                         </div>
                     </div>
@@ -103,7 +104,7 @@ const JobsList = () => {
                                 </div>
                                 <br></br>
 
-                                <button type='button' className="btn btn-primary card-btn">Apply Now</button>
+                                <NavLink type='button' to="/jobdetail" className="btn btn-primary card-btn">Apply Now</NavLink>
                             </div>
                         </div>
                     </div>
@@ -120,7 +121,7 @@ const JobsList = () => {
                                 </div>
                                 <br></br>
 
-                                <button type='button' className="btn btn-primary card-btn">Apply Now</button>
+                                <NavLink type='button' to="/jobdetail" className="btn btn-primary card-btn">Apply Now</NavLink>
                             </div>
                         </div>
                     </div>

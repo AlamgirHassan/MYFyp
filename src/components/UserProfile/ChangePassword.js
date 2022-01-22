@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import "./ChangePassword.css"
+import Footer from '../Footer/Footer';
 const ChangePssword = () => {
     const [password, setpassword] = useState({
         cpassword:"",newpassword:"",newcpassword:"",
@@ -32,7 +33,10 @@ const ChangePssword = () => {
                     <button class="btn btn-primary" type="button">Confirm</button>
                 </form>
             </div>
+            <br></br>
         </div>
+
+        <Footer/>
   </>
 };
 

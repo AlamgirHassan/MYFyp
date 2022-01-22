@@ -1,7 +1,10 @@
 import React,{useState} from 'react';
+import {NavLink} from "react-router-dom"
 import android from "../../images/android.png"
 import "./CandidateEditInformation.css"
 import 'bootstrap/dist/css/bootstrap.css'
+import NavigationBar from '../NavigationBar/NavigationBar';
+import Footer from '../Footer/Footer';
 const RecruiterEditInformation = () => {
 
 
@@ -28,12 +31,14 @@ const RecruiterEditInformation = () => {
         console.log("Image : ",img);
     }
     return (
-
+        
 
         <>
+        <NavigationBar/>
             <div className='container'>
+                
                 <div className='edituserform'>
-
+                <a href="rprofile" className="edituserbackpage"> &#8592; Back to my Profile</a>
                     <form>
                         <div className='edituserimg'>
 
@@ -351,6 +356,9 @@ const RecruiterEditInformation = () => {
                     </form>
                 </div>
             </div >
+
+
+            <Footer/>
 
         </>
     );

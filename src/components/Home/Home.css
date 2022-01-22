@@ -218,6 +218,11 @@ margin-right: auto;
 {
     margin:0px 5px;
 }
+.jobsbutton
+{
+    float: right;
+    display: block;
+}
 
 
 @media only screen and (max-width: 650px) {

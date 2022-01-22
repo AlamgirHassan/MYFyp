@@ -50,7 +50,9 @@ const Userprofile = () => {
             </div>
         </div>
         <br></br>
+       
     </div>
+    <br></br>
 
     <Footer/>
   </>;
