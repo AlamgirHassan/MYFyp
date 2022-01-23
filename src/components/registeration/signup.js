@@ -1,4 +1,4 @@
-import { Button } from 'bootstrap';
+
 import React, { useState } from 'react'
 import CandidateRegisteration from '../CandidateRegisteration/CandidateRegisteration';
 import RecruiterRegisteration from '../CandidateRegisteration/RecruiterRegisteration';

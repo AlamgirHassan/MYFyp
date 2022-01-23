@@ -5,7 +5,7 @@ const NotFound = () => {
 
 
 
-        <img src={downloadimg} style={{ width: '100%' }}></img>
+        <img src={downloadimg} style={{ width: '100%' }} alt="Not found Logo"></img>
     </div>);
 };
 

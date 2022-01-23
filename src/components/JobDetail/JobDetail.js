@@ -21,7 +21,7 @@ const JobDetail = () => {
                     <div className='col col-lg-8 col-sm-6  '>
                         <div className="mycontainer">
                             <div class="aligned">
-                                <img src={android} className='myimage' alt="" />
+                                <img src={android} className='myimage' alt="Logo" />
                                 <div className='mytext'>
                                     <p className='jobtitle'>FRONT-END DEVELOPER NEEDED</p>
                                     <p>BANANA INC</p>
@@ -80,11 +80,11 @@ const JobDetail = () => {
                                 <p> <i class='fas fa-phone'></i>  +92-300-1234567</p>
                             </div>
                             <div className='positions-heading'>
-                                <i class='far fa-envelope'></i>  <a href="#">hr@banana.inc</a>
+                                <i class='far fa-envelope'></i>  <NavLink to="#">hr@banana.inc</NavLink>
                             </div>
 
                             <div className='positions-heading'>
-                                <i class='fas fa-globe-africa'></i>  <a href="#"> https://banana.inc</a>
+                                <i class='fas fa-globe-africa'></i>  <NavLink to="#"> https://banana.inc</NavLink>
                             </div>
 
                             <hr></hr>

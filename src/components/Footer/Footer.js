@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import "./Footer.css"
+import {NavLink} from "react-router-dom"
 const Footer = () => {
 
 
@@ -18,29 +19,29 @@ const Footer = () => {
                             <div class="col-md-4 mb-md-0 mb-4">
                                 <h2 class="sm-heading1">ABOUT</h2>
                                 <ul class="list-unstyled">
-                                    <li><a href="#" class="d-block">Company</a></li>
-                                    <li><a href="#" class="d-block">Our Partners</a></li>
-                                    <li><a href="#" class="d-block">Blog</a></li>
-                                    <li><a href="#" class="d-block">Team</a></li>
-                                    <li><a href="#" class="d-block">Contact Us</a></li>
+                                    <li><NavLink to="#" class="d-block">Company</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">Our Partners</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">Blog</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">Team</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">Contact Us</NavLink></li>
                                 </ul>
                             </div>
                             <div class="col-md-4 mb-md-0 mb-4">
                                 <h2 class="sm-heading1">FOR CANDIDATES</h2>
                                 <ul class="list-unstyled">
-                                    <li><a href="#" class="d-block">Browse Jobs</a></li>
-                                    <li><a href="#" class="d-block">Browse Categories</a></li>
-                                    <li><a href="#" class="d-block">Submit Resumes</a></li>
-                                    <li><a href="#" class="d-block">My Bookmark</a></li>
-                                    <li><a href="#" class="d-block">Candidate Dashboard</a></li>
+                                    <li><NavLink to="#" class="d-block">Browse Jobs</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">Browse Categories</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">Submit Resumes</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">My Bookmark</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">Candidate Dashboard</NavLink></li>
                                 </ul>
                             </div>
                             <div class="col-md-4 mb-md-0 mb-4">
                                 <h2 class="sm-heading1">FOR COMPANIES</h2>
                                 <ul class="list-unstyled">
-                                    <li><a href="#" class="d-block">Browse Candidates</a></li>
-                                    <li><a href="#" class="d-block">Company Dashboard</a></li>
-                                    <li><a href="#" class="d-block">Add Job</a></li>
+                                    <li><NavLink to="#" class="d-block">Browse Candidates</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">Company Dashboard</NavLink></li>
+                                    <li><NavLink to="#" class="d-block">Add Job</NavLink></li>
                                 </ul>
                             </div>
                         </div>
@@ -49,9 +50,9 @@ const Footer = () => {
                         <h2 class="sm-heading1">Follow Us</h2>
                         <div class="col-md-6 col-lg-4 text-md-right">
                             <ul class="ftco-footer-social p-0">
-                                <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="ion-logo-twitter"></span></a></li>
-                                <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="ion-logo-facebook"></span></a></li>
-                                <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="ion-logo-instagram"></span></a></li>
+                                <li class="ftco-animate"><NavLink to="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="ion-logo-twitter"></span></NavLink></li>
+                                <li class="ftco-animate"><NavLink to="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="ion-logo-facebook"></span></NavLink></li>
+                                <li class="ftco-animate"><NavLink to="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="ion-logo-instagram"></span></NavLink></li>
                             </ul>
                         </div>
                     </div>

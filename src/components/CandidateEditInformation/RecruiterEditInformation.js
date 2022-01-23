@@ -38,13 +38,13 @@ const RecruiterEditInformation = () => {
             <div className='container'>
                 
                 <div className='edituserform'>
-                <a href="rprofile" className="edituserbackpage"> &#8592; Back to my Profile</a>
+                <NavLink to="/rprofile" className="edituserbackpage"> &#8592; Back to my Profile</NavLink>
                     <form>
                         <div className='edituserimg'>
 
 
                             <h3>Company Name</h3>
-                            <img src={android} className='edtuserimage rounded-circle' />
+                            <img src={android} className='edtuserimage rounded-circle' alt="Image" />
 
                             </div>
 

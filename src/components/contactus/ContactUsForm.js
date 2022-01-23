@@ -37,7 +37,7 @@ const ContactUsForm = () => {
                 <div className='container myformcontainer'>
                     <div className='row'>
                         <div className='col col-lg-7'>
-                            <img src={formimg} className='formimage' />
+                            <img src={formimg} className='formimage' to="Logo" />
                         </div>
                         <div className='col col-lg-5'>
                             <div className='contactformcontainer'>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {NavLink} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.css'
 import android from "../../images/android.png"
 import "./CandidateEditInformation.css"
@@ -35,13 +36,13 @@ const CandidateEditInformation = () => {
         <NavigationBar/>
             <div className='container'>
                 <div className='edituserform'>
-                <a href="cprofile" className="edituserbackpage"> &#8592; Back to my Profile</a>
+                <NavLink to="/cprofile" className="edituserbackpage"> &#8592; Back to my Profile</NavLink>
                     <form>
                         <div className='edituserimg'>
 
 
                             <h3>User Name</h3>
-                            <img src={android} className='edtuserimage rounded-circle' />
+                            <img src={android} className='edtuserimage rounded-circle' alt="Candidate-Image" />
                             
                               
                                 <input className="" type="file" accept="image/*" id="formFile" name="image" required />

@@ -10,7 +10,7 @@ const Recruiterprofile = () => {
     <div className='container mt-5 border'>
         <div className='row s-2 g-3'>
             <div className='col-md-6'>
-            <img src={img1} className="rounded-circle float-left img1" alt="..."/>
+            <img src={img1} className="rounded-circle float-left img1" alt="Logo"/>
             </div>
             <div className='col-md-6'>
             </div>

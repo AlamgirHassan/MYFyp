@@ -69,7 +69,7 @@ const Home = () => {
                     <div className="row">
                         <div className="col">
                             <div className="card " >
-                                <img className="card-img-top card-img" src={img} alt="Card image cap" />
+                                <img className="card-img-top card-img" src={img} alt="Card image cap"  />
                                 <div className="card-body">
                                     <h5 className="card-title">QUICK STUDIO</h5>
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
@@ -176,56 +176,56 @@ const Home = () => {
                         <div className='col'>
 
                             <p>
-                                <a href="#">
+                                <NavLink to="#">
                                     <div className="image">
-                                        <img src={android} className="categories_images" />
+                                        <img src={android} className="categories_images" alt="Logo" />
                                         <div className="overlay">
                                             <div className="text">Android Development</div>
                                         </div>
                                     </div>
 
 
-                                </a>
+                                </NavLink>
                             </p>
                         </div>
                         <div className='col'>
                             <p>
-                                <a href="#">
+                                <NavLink to="#">
 
                                     <div className="image">
-                                        <img src={ios} className="categories_images" />
+                                        <img src={ios} className="categories_images" alt="Logo" />
                                         <div className="overlay">
                                             <div className="text">iOS Development</div>
                                         </div>
                                     </div>
 
-                                </a>
+                                </NavLink>
                             </p>
                         </div>
                         <div className='col'>
                             <p>
-                                <a href="#">
+                                <NavLink to="#">
 
                                     <div className="image">
-                                        <img src={webdevelopment} className="categories_images" />
+                                        <img src={webdevelopment} className="categories_images" alt="Logo" />
                                         <div className="overlay">
                                             <div className="text">Web Development</div>
                                         </div>
                                     </div>
-                                </a>
+                                </NavLink>
                             </p>
                         </div>
                         <div className='col'>
                             <p>
-                                <a href="#">
+                                <NavLink to="#">
 
                                     <div className="image">
-                                        <img src={datascience} className="categories_images" />
+                                        <img src={datascience} className="categories_images" alt="Logo" />
                                         <div className="overlay">
                                             <div className="text">Data Science</div>
                                         </div>
                                     </div>
-                                </a>
+                                </NavLink>
                             </p>
                         </div>
                     </div>
@@ -234,54 +234,54 @@ const Home = () => {
                         <div className='col'>
 
                             <p>
-                                <a href="#">
+                                <NavLink to="#">
 
                                     <div className="image">
-                                        <img src={ai} className="categories_images" />
+                                        <img src={ai} className="categories_images" alt="Logo" />
                                         <div className="overlay">
                                             <div className="text">Artificial Intelligence</div>
                                         </div>
                                     </div>
-                                </a>
+                                </NavLink>
                             </p>
                         </div>
                         <div className='col'>
                             <p>
-                                <a href="#">
+                                <NavLink to="#">
 
                                     <div className="image">
-                                        <img src={sd} className="categories_images" />
+                                        <img src={sd} className="categories_images"  alt="Logo"/>
                                         <div className="overlay">
                                             <div className="text">Software Development</div>
                                         </div>
                                     </div>
-                                </a>
+                                </NavLink>
                             </p>
                         </div>
                         <div className='col'>
                             <p>
-                                <a href="#">
+                                <NavLink to="#">
 
                                     <div className="image">
-                                        <img src={csecurity} className="categories_images" />
+                                        <img src={csecurity} className="categories_images" alt="Logo" />
                                         <div className="overlay">
                                             <div className="text">Cyber Security</div>
                                         </div>
                                     </div>
-                                </a>
+                                </NavLink>
                             </p>
                         </div>
                         <div className='col'>
                             <p>
-                                <a href="#">
+                                <NavLink to="#">
 
                                     <div className="image">
-                                        <img src={networking} className="categories_images" />
+                                        <img src={networking} className="categories_images" alt="Logo"/>
                                         <div className="overlay">
                                             <div className="text">Networking</div>
                                         </div>
                                     </div>
-                                </a>
+                                </NavLink>
                             </p>
                         </div>
                     </div>

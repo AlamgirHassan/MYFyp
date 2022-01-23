@@ -1,30 +1,101 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import './CandidateRegisteration.css'
+import ErrorMessage from '../othercomponents/ErrorMessage';
+import Loading from '../othercomponents/Loading';
+
 
 const CandidateRegisteration = () => {
+
+    const back = useNavigate();
     const [candidate, setcandidate] = useState({
-        firstname:"",lastname:"",emailAddress:"",address:"",dob:"",country:"",password:"",cpassword:"",gender:"",status:"",image:""
+        firstname: "", lastname: "", email: "", address: "", dob: "", country: "Afghanistan", password: "", cpassword: "", gender: "Male", status: "Employeed", image: ""
     });
+    const [message, setmessage] = useState(null);
+    const [error, seterror] = useState(false);
+    const [loading, setloading] = useState(false);
     const handleInputs = (e) => {
         console.log(e);
         let name = e.target.name;
         let value = e.target.value;
         setcandidate({ ...candidate, [name]: value })
     }
-    const PostData=async (e)=>{
+    const PostData = async (e) => {
         e.preventDefault();
-        const {emailAddress,  password,firstname,lastname,address,cpassword,country,dob,gender,status,image } = candidate;
-        console.log("User Name : ",firstname+" "+lastname);
-        console.log("Address : ",address);
-        console.log("Gender : ",gender);
-        console.log("Country : ",country);
-        console.log("Email : ",emailAddress);
-        console.log("Password : "+password);
-        console.log("Cpassword : ",cpassword);
-        console.log("DOB : ",dob);
-        console.log("Status : ",status);
+        setloading(true);
+        const { email, password, firstname, lastname, address, cpassword, country, dob, gender, status } = candidate;
+        if (password !== cpassword) {
+            setmessage("Passwords do not match");
+            setloading(false);
+        }
+        else {
+            setmessage(null);
+            try {
+
+                const res = await fetch("/candidate/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        firstname: firstname,
+                        lastname: lastname,
+                        email: email,
+                        country: country,
+                        address: address,
+                        gender: gender,
+                        emp_status: status,
+                        password: password,
+                        cpassword: cpassword,
+                        dob: dob
+
+                    })
+                });
+
+                const data = await res.json();
+                //console.log('Response ' + data.json);
+                //console.log('Response',data.error);
+                //console.log('Status ',res.status);
+                if (res.status == 422 || !data ) {
+                    //window.alert("Invalid Registration");
+                    //console.log("Error ",data.error);
+                    console.log("Registeration Invalid");
+                    
+                    seterror(data.error);
+                    setloading(false);
+                }
+                else if(res.status==500)
+                {
+                    seterror(data.message);
+                }
+                else {
+                    console.log('Resp ',data.message);
+                    window.alert("Data saved successfully");
+                    seterror(false);
+                    setloading(false);
+                    back('/');
+                }
+            }
+            catch (error) {
+                seterror(error.response.data.message);
+                setloading(false);
+            }
+        }
+
+
+        /*console.log("User Name : ", firstname + " " + lastname);
+        console.log("Address : ", address);
+        console.log("Gender : ", gender);
+        console.log("Country : ", country);
+        console.log("Email : ", email);
+        console.log("Password : " + password);
+        console.log("Cpassword : ", cpassword);
+        console.log("DOB : ", dob);
+        console.log("Status : ", status);*/
+
+
+
     }
 
     return (
@@ -32,21 +103,24 @@ const CandidateRegisteration = () => {
 
             <div className='container'>
                 <div className='signupForm'>
+                    {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                    {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
+                    {loading && <Loading />}
                     <form method="POST" className=" needs-validation" novalidate>
                         <h3>Candidate Registeration Form</h3>
                         <div className="row">
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">First Name</label>
                                 <input type="text" className="form-control" placeholder="First name" name="firstname" value={candidate.firstname} onChange={handleInputs} aria-label="First name" required />
-                             
+
                                 <div className="invalid-feedback">
                                     Please provide your first name.
                                 </div>
                             </div>
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Last Name</label>
-                                <input type="text" className="form-control" placeholder="Last name" name="lastname" value={candidate.lastname} onChange={handleInputs} aria-label="Last name" required/>
- 
+                                <input type="text" className="form-control" placeholder="Last name" name="lastname" value={candidate.lastname} onChange={handleInputs} aria-label="Last name" required />
+
                                 <div className="invalid-feedback">
                                     Please provide your last name.
                                 </div>
@@ -56,7 +130,7 @@ const CandidateRegisteration = () => {
                         <div className="row">
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Email Address</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Your Email Address" name="emailAddress" required value={candidate.emailAddress} onChange={handleInputs} />
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Your Email Address" name="email" required value={candidate.email} onChange={handleInputs} />
                                 <div className="invalid-feedback">
                                     Please provide your Email Address.
                                 </div>
@@ -81,7 +155,6 @@ const CandidateRegisteration = () => {
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Country</label>
                                 <select className="form-select" id="validationCustom04" required name="country" value={candidate.country} onChange={handleInputs}>
-
 
                                     <option value="Afganistan" selected>Afghanistan</option>
                                     <option value="Albania">Albania</option>
@@ -336,14 +409,16 @@ const CandidateRegisteration = () => {
                         <div className="row">
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Gender</label>
-                                <select className="form-select" id="validationCustom04" required name="gender" value={candidate.gender} onChange={handleInputs}>
+                                <select className="form-select" id="validationCustom05" required name="gender" value={candidate.gender} onChange={handleInputs}>
+
                                     <option value="Male" selected>Male</option>
                                     <option value="Female">Female</option>
                                 </select>
                             </div>
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Employment Status</label>
-                                <select className="form-select" id="validationCustom04" required name="status" value={candidate.status} onChange={handleInputs}>
+                                <select className="form-select" id="validationCustom06" required name="status" value={candidate.status} onChange={handleInputs}>
+
                                     <option value="Employed" selected>Employed</option>
                                     <option value="Unemployed">Unemployed</option>
                                 </select>
@@ -371,8 +446,8 @@ const CandidateRegisteration = () => {
                             <label for="formFile" className="form-label">Your Image</label>
                             <input className="form-control" type="file" accept="image/*" id="formFile" name="image" required value={candidate.image} onChange={handleInputs} />
                             <div className="invalid-feedback">
-                                    Please upload your Image.
-                                </div>
+                                Please upload your Image.
+                            </div>
                         </div>
                         <br></br>
                         <button type="button" className="btn btn-outline-primary" onClick={PostData}>Register as Candidate</button>

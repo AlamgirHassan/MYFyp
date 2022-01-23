@@ -1,42 +1,118 @@
-import React,{useState} from 'react'
-
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink,useNavigate  } from 'react-router-dom'
 import './CandidateRegisteration.css'
+import ErrorMessage from '../othercomponents/ErrorMessage';
+import Loading from '../othercomponents/Loading';
 
 const RecruiterRegisteration = () => {
+    const back = useNavigate();
     const [recruiter, setrecruiter] = useState({
-        name:"",email:"",address:"",phonenumber:"",password:"",cpassword:"",country:"",image:"",websiteurl:"",
+        name: "", email: "", address: "", phonenumber: "", password: "", cpassword: "", country: "Afghanistan", image: "", websiteurl: "",
     })
-
+    const [message, setmessage] = useState(null);
+    const [error, seterror] = useState(false);
+    const [loading, setloading] = useState(false);
     const handleInputs = (e) => {
         console.log(e);
         let name = e.target.name;
         let value = e.target.value;
         setrecruiter({ ...recruiter, [name]: value })
     }
-    const PostData=async (e)=>{
+    function is_url(str) {
+        var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+            '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+        return !!pattern.test(str);
+    }
+    const PostData = async (e) => {
         e.preventDefault();
-        const {email,  password,name,address,phonenumber,cpassword,country,websiteurl } = recruiter;
-        console.log("Company Name : ",name);
-        console.log("Address : ",address);
-        console.log("Phone number : ",phonenumber);
-        console.log("Country : ",country);
-        console.log("Email : "+email);
-        console.log("Password : "+password);
-        console.log("Cpassword : ",cpassword);
-        console.log("URL : ",websiteurl);
+        setloading(true);
+        const { email, password, name, address, phonenumber, cpassword, country, websiteurl } = recruiter;
+
+        if (password !== cpassword) {
+            setmessage("Passwords do not match");
+            setloading(false);
+        }
+        else if(!is_url(websiteurl))
+        {
+            setmessage("Please enter valid URL");
+            setloading(false);
+        }
+        else {
+            setmessage(null);
+
+            try {
+                const res = await fetch("/recruiter/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        
+                        name: name,
+                        email: email,
+                        country: country,
+                        address: address,
+                        phonenumber: phonenumber,
+                        url: websiteurl,
+                        password: password,
+
+
+                    })
+                });
+                const data = await res.json();
+                console.log("Data : ",data);
+                if (res.status == 422 || !data) {
+                    //window.alert("Invalid Registration");
+                    //console.log("Error ",data.error);
+                    console.log("Registeration Invalid");
+
+                    seterror(data.error);
+                    setloading(false);
+                }
+                else if (res.status == 500) {
+                    seterror(data.message);
+                }
+                else {
+                    console.log('Resp ', data.message);
+                    window.alert("Data saved successfully");
+                    seterror(false);
+                    setloading(false);
+                    back('/');
+                }
+            }
+            catch (error) {
+                seterror(error.response.data.message);
+                setloading(false);
+            }
+        }
+        console.log("Company Name : ", name);
+        console.log("Address : ", address);
+        console.log("Phone number : ", phonenumber);
+        console.log("Country : ", country);
+        console.log("Email : " + email);
+        console.log("Password : " + password);
+        console.log("Cpassword : ", cpassword);
+        console.log("URL : ", websiteurl);
+        console.log("Check URL ", is_url(websiteurl));
     }
     return (
         <>
             <div className='container'>
                 <div className='signupForm'>
+                    {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                    {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
+                    {loading && <Loading />}
                     <form method="POST" className=" needs-validation" novalidate>
                         <h3>Recruiter Registeration Form</h3>
                         <div className="row">
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Company Name</label>
-                                <input type="text" className="form-control" placeholder="Company name" name="name"  value={recruiter.name} onChange={handleInputs} aria-label="First name" required />
+                                <input type="text" className="form-control" placeholder="Company name" name="name" value={recruiter.name} onChange={handleInputs} aria-label="First name" required />
 
                                 <div className="invalid-feedback">
                                     Please provide your company name.
@@ -72,7 +148,7 @@ const RecruiterRegisteration = () => {
 
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Website URL</label>
-                                <input type="url" className="form-control" placeholder="Website" name="websiteurl" value={recruiter.websiteurl}  onChange={handleInputs} aria-label="Last name" required />
+                                <input type="url" className="form-control" placeholder="Website" name="websiteurl" value={recruiter.websiteurl} onChange={handleInputs} aria-label="Last name" required />
 
                                 <div className="invalid-feedback">
                                     Please provide your company contact number.
@@ -355,7 +431,7 @@ const RecruiterRegisteration = () => {
                             </div>
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Company Logo</label>
-                                <input className="form-control" type="file" accept='image/*' id="formFile" name="image" required  />
+                                <input className="form-control" type="file" accept='image/*' id="formFile" name="image" required />
 
                                 <div className="invalid-feedback">
                                     Please provide your company logo.

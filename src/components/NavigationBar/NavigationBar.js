@@ -29,28 +29,28 @@ const NavigationBar = () => {
                             </li>
                          
                             <li class="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Candidate Profile
-                                </a>
+                                </NavLink>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item text-center" href="/cprofile">Check Profile</a></li>
-                                    <li><a class="dropdown-item text-center" href="/ceditform">Edit Profile</a></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/cprofile">Check Profile</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/ceditform">Edit Profile</NavLink></li>
                                     
-                                    <li><a class="dropdown-item text-center" href="/cpass">Change Password</a></li>
-                                    <li><a class="dropdown-item text-center" href="#">Logout</a></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/cpass">Change Password</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/">Logout</NavLink></li>
                                 </ul>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Recruiter Profile
-                                </a>
+                                </NavLink>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item text-center" href="/rprofile">Check Profile</a></li>
-                                    <li><a class="dropdown-item text-center" href="/reditform">Edit Profile</a></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/rprofile">Check Profile</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/reditform">Edit Profile</NavLink></li>
                                     
-                                    <li><a class="dropdown-item text-center" href="/cpass">Change Password</a></li>
-                                    <li><a class="dropdown-item text-center" href="#">Logout</a></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/cpass">Change Password</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/">Logout</NavLink></li>
                                 </ul>
                             </li>
                            
