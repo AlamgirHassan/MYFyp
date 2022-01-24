@@ -2,7 +2,7 @@
 import NavigationBar from '../NavigationBar/NavigationBar'
 import Footer from '../Footer/Footer'
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink,useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import img from "../../images/mercedescl600.jpg"
 import img1 from "../../images/mercedess680.jpg"
@@ -17,6 +17,38 @@ import networking from "../../images/networking.png"
 
 import './Home.css'
 const Home = () => {
+    const back=useNavigate();
+    /*const callHomePage=async()=>{
+        try{
+            const res=await fetch("/home",{
+                method:"GET",
+                headers:{
+                    Accept:"application/json",
+                    "Content-Type":"application/json"
+                },
+                credentials:"include"
+            });
+          
+            const data= await res.json();
+            console.log(data);
+            if(res.status!==200)
+            {
+                const error=new Error(res.error);
+                throw error;
+            }
+
+       }catch(err)
+        {
+            console.log(err);
+            back('/');
+        }
+    }
+    useEffect(()=>{
+        callHomePage();
+    },[]);*/
+
+    
+
     return (
         <>
             <NavigationBar />
@@ -170,7 +202,7 @@ const Home = () => {
             <div className='container-flex categories'>
 
                 <br></br>
-                <h1 className="jobsheading1">Featured Jobs</h1>
+                <h1 className="jobsheading1">Categories</h1>
                 <div className="container">
                     <div className="row">
                         <div className='col'>
@@ -286,9 +318,9 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+                <br></br>
             </div>
-            <br></br>
-            <br></br>
+            
             <div className='container-flex eg1'>
                 <br></br>
                 <h2 className="heading1">Your Dreams Jobs Are Waiting </h2>

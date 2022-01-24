@@ -27,7 +27,10 @@ const RecruiterLogin = () => {
         //window.location = '/home';
         setmessage(null);
 
+
         try {
+
+            setloading(true);
             const res = await fetch("/recruiter/login", {
                 method: "POST",
                 headers: {
@@ -40,7 +43,7 @@ const RecruiterLogin = () => {
             });
             const data = await res.json();
             console.log("Data : ", data);
-            if (res.status == 422 || !data) {
+            if (res.status === 422 || !data) {
 
                 console.log("Login Failed");
 
@@ -53,6 +56,12 @@ const RecruiterLogin = () => {
                 window.alert("Recruiter Login successfully");
                 seterror(false);
                 setloading(false);
+                const usrdata = {
+                    username:data.message,
+                    email: email,
+                    type: "Recruiter"
+                }
+                localStorage.setItem("userData", JSON.stringify(usrdata));
                 back('/home');
             }
         }
@@ -65,7 +74,11 @@ const RecruiterLogin = () => {
 
 
     return (
+
         <>
+            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+            {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
+            {loading && <Loading />}
             <form method="POST">
                 <div className="mb-3">
                     <label for="exampleInputEmail1" className="form-label">Email address</label>

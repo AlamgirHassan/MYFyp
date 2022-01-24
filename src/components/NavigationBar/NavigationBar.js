@@ -8,6 +8,18 @@ import './NavigationBar.css'
 
 
 const NavigationBar = () => {
+    const [usertype, setusertype] = useState("");
+    const[username,setusername]=useState("");
+
+    useEffect(()=>{
+        const data=localStorage.getItem("userData");
+        const data1=JSON.parse(data);
+        //console.log(data1.email);
+        //console.log(data1.type);
+        setusertype(data1.type);
+        setusername(data1. username);
+    },[]);
+   
     return (
         <>
 
@@ -24,35 +36,38 @@ const NavigationBar = () => {
                             <li className="nav-item">
                                 <NavLink className="nav-link navlink-active" aria-current="page" to="/home">Home</NavLink>
                             </li>
+                            
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/jobslist">Jobs List</NavLink>
                             </li>
-                         
-                            <li class="nav-item dropdown">
+                            
+                            {usertype==="Candidate" &&<li class="nav-item dropdown">
                                 <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Candidate Profile
+                                    {username}
                                 </NavLink>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><NavLink class="dropdown-item text-center" to="/cprofile">Check Profile</NavLink></li>
                                     <li><NavLink class="dropdown-item text-center" to="/ceditform">Edit Profile</NavLink></li>
-                                    
                                     <li><NavLink class="dropdown-item text-center" to="/cpass">Change Password</NavLink></li>
-                                    <li><NavLink class="dropdown-item text-center" to="/">Logout</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/logout">Logout</NavLink></li>
                                 </ul>
-                            </li>
-
-                            <li class="nav-item dropdown">
+                            </li>}
+                            
+                            {usertype==="Recruiter" && <li class="nav-item dropdown">
                                 <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Recruiter Profile
+                                {username}
                                 </NavLink>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><NavLink class="dropdown-item text-center" to="/rprofile">Check Profile</NavLink></li>
                                     <li><NavLink class="dropdown-item text-center" to="/reditform">Edit Profile</NavLink></li>
                                     
                                     <li><NavLink class="dropdown-item text-center" to="/cpass">Change Password</NavLink></li>
-                                    <li><NavLink class="dropdown-item text-center" to="/">Logout</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="#">Post Job</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="#">Your Jobs</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/logout">Logout</NavLink></li>
                                 </ul>
-                            </li>
+                            </li>}
+                            
                            
 
                         </ul>

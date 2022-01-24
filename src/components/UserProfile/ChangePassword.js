@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import "./ChangePassword.css"
 import Footer from '../Footer/Footer';
+import NavigationBar from '../NavigationBar/NavigationBar';
 const ChangePssword = () => {
     const [password, setpassword] = useState({
         cpassword:"",newpassword:"",newcpassword:"",
@@ -12,9 +13,10 @@ const ChangePssword = () => {
         setpassword({ ...password, [name]: value })
     }
   return <>
+        <NavigationBar/>
         <div class="container changepasswordcontainer">
             <div className='container border'>
-                <h4>Change Password</h4>
+                <h4 >Change Password</h4>
                 <form className='row g-3'>
                     <div className='col-md-12'>
                         <label for="Current Password" className='form-label'>Current Password</label>

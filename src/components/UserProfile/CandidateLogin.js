@@ -29,7 +29,9 @@ const CandidateLogin = () => {
 
     setmessage(null);
 
+    
     try {
+      setloading(true);
       const res = await fetch("/candidate/login", {
         method: "POST",
         headers: {
@@ -42,7 +44,7 @@ const CandidateLogin = () => {
       });
       const data = await res.json();
       console.log("Data : ", data);
-      if (res.status == 422 || !data) {
+      if (res.status === 422 || !data) {
 
         console.log("Registeration Invalid");
 
@@ -53,8 +55,16 @@ const CandidateLogin = () => {
       else {
         console.log('Resp ', data.message);
         window.alert("Candidate Login successfully");
+       
         seterror(false);
         setloading(false);
+
+        const usrdata = {
+          username:data.message,
+          email: email,
+          type: "Candidate"
+        }
+        localStorage.setItem("userData", JSON.stringify(usrdata));
         back('/home');
       }
     }

@@ -5,7 +5,7 @@ import RecruiterRegisteration from '../CandidateRegisteration/RecruiterRegistera
 import './signup.css'
 import 'bootstrap/dist/css/bootstrap.css'
 const Signup = () => {
-    const [user, setuser] = useState("")
+    const [user, setuser] = useState("Candidate")
     return (
         <>
             <div className="container">
