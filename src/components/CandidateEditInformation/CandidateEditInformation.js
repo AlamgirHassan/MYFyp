@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {NavLink} from "react-router-dom"
+import React, { useState,useEffect } from 'react';
+import { NavLink,useNavigate } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.css'
 import android from "../../images/android.png"
 import "./CandidateEditInformation.css"
@@ -7,56 +7,133 @@ import NavigationBar from '../NavigationBar/NavigationBar';
 import Footer from '../Footer/Footer';
 const CandidateEditInformation = () => {
 
+    const back=useNavigate();
 
-
-    const [candidate, setcandidate] = useState({
-        firstname:"",lastname:"",address:"",dob:"",country:"",gender:"",status:"",image:""
-    });
-    const handleInputs = (e) => {
-        console.log(e);
-        let name = e.target.name;
-        let value = e.target.value;
-        setcandidate({ ...candidate, [name]: value })
-    }
-    const PostData=async (e)=>{
+    const [candidate, setcandidate] = useState();
+    const[candidateemail,setcandidateemai]=useState();
+    const [userfname, setuserfname] = useState();
+    const [userlname, setuserlname] = useState();
+    const [userstatus, setuserstatus] = useState();
+    const [userdob, setuserdob] = useState();
+    const [usercountry, setusercountry] = useState();
+    const [usergender, setusergender] = useState();
+    const [useraddress, setuseraddress] = useState();
+    
+    const PostData = async (e) => {
         e.preventDefault();
-        const {firstname,lastname,address,country,dob,gender,status } = candidate;
-        console.log("User Name : ",firstname+" "+lastname);
-        console.log("Address : ",address);
-        console.log("Gender : ",gender);
-        console.log("Country : ",country);
+        
+        try
+        {
+            const res = await fetch("/candidate/update/"+candidateemail, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
 
-        console.log("DOB : ",dob);
-        console.log("Status : ",status);
+                  firstname: userfname,
+                  lastname: userlname,
+                  address:useraddress,
+                  dob:userdob,
+                  emp_status:userstatus,
+                  country:usercountry,
+                  gender:usergender
+                })
+              });
+
+              const mydata = await res.json();
+              console.log(mydata);
+              if(res.status===422||!mydata)
+              {
+                  console.log(mydata.message);
+              }
+              else if(res.status===201)
+              {
+                    console.log(mydata.message);
+                    back('/cprofile');
+
+              }
+
+        }
+        catch (error) {
+            console.log(error);
+          }
+
+        
     }
+    
+    const getdata = async () => {
+        const data = localStorage.getItem("userData");
+        const data1 = JSON.parse(data);
+        setcandidate(data1.username);
+        setcandidateemai(data1.email);
+        console.log(data1);
+
+        try {
+            const res = await fetch("/candidate/info/" + data1.email, {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+
+            });
+            const mydata = await res.json();
+            console.log(mydata.message);
+
+            if (res.status != 201) {
+                const error = new Error(res.error);
+                throw error;
+            }
+            else 
+            {
+                setuserfname(mydata.message.firstname);
+                setuserlname(mydata.message.lastname);
+                setuserstatus(mydata.message.status);
+                setuserdob(mydata.message.dob);
+                setusercountry(mydata.message.country);
+                setusergender(mydata.message.gender);
+                setuseraddress(mydata.message.address);    
+            }
+
+
+        }
+        catch (error) {
+
+        }
+    }
+    useEffect(() => {
+        getdata();
+    }, []);
     return (
 
 
         <>
-        <NavigationBar/>
+            <NavigationBar />
             <div className='container'>
                 <div className='edituserform'>
-                <NavLink to="/cprofile" className="edituserbackpage"> &#8592; Back to my Profile</NavLink>
+                    <NavLink to="/cprofile" className="edituserbackpage"> &#8592; Back to my Profile</NavLink>
                     <form>
                         <div className='edituserimg'>
 
 
-                            <h3>User Name</h3>
+                            <h3>{candidate}</h3>
                             <img src={android} className='edtuserimage rounded-circle' alt="Candidate-Image" />
-                            
-                              
-                                <input className="" type="file" accept="image/*" id="formFile" name="image" required />
-                                <div className="invalid-feedback">
-                                    Please upload your Image.
-                                </div>
-                       
+
+
+                            <input className="" type="file" accept="image/*" id="formFile" name="image" required />
+                            <div className="invalid-feedback">
+                                Please upload your Image.
+                            </div>
+
 
 
                         </div>
                         <div className="row">
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">First Name</label>
-                                <input type="text" className="form-control" placeholder="First name" name="firstname" value={candidate.firstname} onChange={handleInputs}  aria-label="First name" required />
+                                <input type="text" className="form-control" placeholder="First name" name="firstname" value={userfname} onChange={event => setuserfname(event.target.value)} aria-label="First name" required />
 
                                 <div className="invalid-feedback">
                                     Please provide your first name.
@@ -64,7 +141,7 @@ const CandidateEditInformation = () => {
                             </div>
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Last Name</label>
-                                <input type="text" className="form-control" placeholder="Last name" name="lastname" value={candidate.lastname} onChange={handleInputs}  aria-label="Last name" required />
+                                <input type="text" className="form-control" placeholder="Last name" name="lastname" value={userlname} onChange={event => setuserlname(event.target.value)} aria-label="Last name" required />
 
                                 <div className="invalid-feedback">
                                     Please provide your last name.
@@ -76,31 +153,31 @@ const CandidateEditInformation = () => {
                         <div className="row">
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Address</label>
-                                <input type="text" className="form-control" placeholder="Current Address" value={candidate.address} onChange={handleInputs}  name="address" aria-label="Current Address" required />
+                                <input type="text" className="form-control" placeholder="Current Address" value={useraddress} onChange={event => setuseraddress(event.target.value)} name="address" aria-label="Current Address" required />
                                 <div className="invalid-feedback">
                                     Please provide your Current Address.
                                 </div>
                             </div>
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Date of Birth</label>
-                                <input type="date" className="form-control" name="dob"  value={candidate.dob} onChange={handleInputs} aria-label="DOB" required />
+                                <input type="date" className="form-control" name="dob" value={userdob} onChange={event => setuserdob(event.target.value)} aria-label="DOB" required />
                                 <div className="invalid-feedback">
                                     Please provide your date of birth.
                                 </div>
                             </div>
                             <div className="col">
-                                    <label for="exampleFormControlInput1" className="form-label">Employment Status</label>
-                                    <select className="form-select" id="validationCustom04" required name="status" value={candidate.status} onChange={handleInputs}  >
-                                        <option value="Employed" selected>Employed</option>
-                                        <option value="Unemployed">Unemployed</option>
-                                    </select>
-                                </div>
+                                <label for="exampleFormControlInput1" className="form-label">Employment Status</label>
+                                <select className="form-select" id="validationCustom04" required name="status" value={userstatus} onChange={event => setuserstatus(event.target.value)}  >
+                                    <option value="Employed" selected>Employed</option>
+                                    <option value="Unemployed">Unemployed</option>
+                                </select>
+                            </div>
                         </div>
                         <br></br>
                         <div className="row">
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Country</label>
-                                <select className="form-select" id="validationCustom04" required name="country" value={candidate.country} onChange={handleInputs}  >
+                                <select className="form-select" id="validationCustom04" required name="country" value={usercountry} onChange={event => setusercountry(event.target.value)}  >
 
 
                                     <option value="Afganistan" selected>Afghanistan</option>
@@ -353,15 +430,15 @@ const CandidateEditInformation = () => {
                             </div>
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Gender</label>
-                                <select className="form-select" id="validationCustom04" required name="gender" value={candidate.gender} onChange={handleInputs}  >
+                                <select className="form-select" id="validationCustom04" required name="gender" value={usergender} onChange={event => setusergender(event.target.value)}  >
                                     <option value="Male" selected>Male</option>
                                     <option value="Female">Female</option>
                                 </select>
                             </div>
 
-                            
+
                         </div>
-<br></br>
+                        <br></br>
                         <button type="button" className="btn btn-success btn-lg-success" onClick={PostData}>Edit Your Information</button>
 
 
@@ -372,7 +449,7 @@ const CandidateEditInformation = () => {
             </div>
 
 
-            <Footer/>
+            <Footer />
 
         </>
 

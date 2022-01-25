@@ -46,7 +46,7 @@ const NavigationBar = () => {
                                     {username}
                                 </NavLink>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><NavLink class="dropdown-item text-center" to="/cprofile">Check Profile</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/cprofile">Your Profile</NavLink></li>
                                     <li><NavLink class="dropdown-item text-center" to="/ceditform">Edit Profile</NavLink></li>
                                     <li><NavLink class="dropdown-item text-center" to="/cpass">Change Password</NavLink></li>
                                     <li><NavLink class="dropdown-item text-center" to="/logout">Logout</NavLink></li>
