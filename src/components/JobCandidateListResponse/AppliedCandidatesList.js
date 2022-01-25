@@ -1,14 +1,16 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import "./AppliedCandidateList.css"
-
+import NavigationBar from '../NavigationBar/NavigationBar';
+import Footer from '../Footer/Footer';
 
 const AppliedCandidatesList = () => {
+    document.body.style.backgroundColor = "#e6f2ff"
     return (
 
 
         <>
-
+            <NavigationBar/>
             <h1 className='candidateslist-heading'>Candidates List</h1>
 
             <div className='container'>
@@ -93,7 +95,9 @@ const AppliedCandidatesList = () => {
                         </div>
                     </div>
                 </div>
+                <br></br>
             </div>
+            <Footer/>
 
         </>);
 };

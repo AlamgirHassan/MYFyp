@@ -31,8 +31,8 @@ const RecruiterRegisteration = () => {
     const PostData = async (e) => {
         e.preventDefault();
         setloading(true);
-        const { email, password, name, address, phonenumber, cpassword, country, websiteurl } = recruiter;
-
+        const { email, password, name, address, phonenumber, cpassword, country, websiteurl,image } = recruiter;
+        
         if (password !== cpassword) {
             setmessage("Passwords do not match");
             setloading(false);
@@ -60,6 +60,7 @@ const RecruiterRegisteration = () => {
                         phonenumber: phonenumber,
                         url: websiteurl,
                         password: password,
+                        image:image,
 
 
                     })
@@ -79,7 +80,7 @@ const RecruiterRegisteration = () => {
                 }
                 else {
                     console.log('Resp ', data.message);
-                    window.alert("Data saved successfully");
+                    //window.alert("Data saved successfully");
                     seterror(false);
                     setloading(false);
                     back('/');
@@ -427,17 +428,14 @@ const RecruiterRegisteration = () => {
                                     <option value="Zambia">Zambia</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
                                 </select>
-
                             </div>
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Company Logo</label>
-                                <input className="form-control" type="file" accept='image/*' id="formFile" name="image" required />
-
+                                <input className="form-control" type="file" accept='image/*' id="formFile" name="image" value={recruiter.image} onChange={handleInputs} required />
                                 <div className="invalid-feedback">
                                     Please provide your company logo.
                                 </div>
                             </div>
-
                         </div>
 
                         <br></br>

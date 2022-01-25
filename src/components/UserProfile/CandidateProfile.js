@@ -5,7 +5,7 @@ import "./CandidateProfile.css"
 import Footer from '../Footer/Footer';
 
 const Userprofile = () => {
-    
+    document.body.style.backgroundColor = "#e6f2ff"
     const [userfname, setuserfname] = useState();
     const [userlname,setuserlname]=useState();
     const[useremail,setuseremail]=useState();
@@ -14,6 +14,7 @@ const Userprofile = () => {
     const[usercountry,setusercountry]=useState();
     const[usergender,setusergender]=useState();
     const[useraddress,setuseraddress]=useState();
+    const[userimage,setuserimage]=useState();
     const getdata = async () => {
         const data = localStorage.getItem("userData");
         const data1 = JSON.parse(data);
@@ -47,6 +48,7 @@ const Userprofile = () => {
                 setusercountry(mydata.message.country);
                 setusergender(mydata.message.gender);
                 setuseraddress(mydata.message.address);
+                //setuserimage(mydata.message.image);
             }
 
 
@@ -63,7 +65,7 @@ const Userprofile = () => {
         <NavigationBar />
         <br></br>
         <h1 className='text-center'>User Profile</h1>
-        <div className='container mt-5 border'>
+        <div className='container profilecontainer mt-5 border'>
             <div className='row s-2 g-3'>
                 <div className='col-md-6'>
                     <img src={img1} className="rounded-circle float-left img1" alt="Logo" />

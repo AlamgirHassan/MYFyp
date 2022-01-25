@@ -13,7 +13,7 @@ import RecruiterLogin from '../UserProfile/RecruiterLogin'
 
 const Landingpage = () => {
 
-
+    document.body.style.backgroundColor = "#e6f2ff"
     const [user, setuser] = useState("");
     const [counter,setcounter]=useState();
     
@@ -25,7 +25,9 @@ const Landingpage = () => {
             <div className='container-fluid'>
                 <div className="row">
                     <div className=" col-lg-6 d-none d-sm-block ">
-                        <img src={img1} className="my-image" alt="Img" />
+                                               <img src={img1} className="my-image" alt="Img" />
+                       
+                       
                     </div>
                     <div className=" col-lg-6 sm-6">
                         <div className="loginForm">

@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom'
+import "./JobDetail.css"
 import 'bootstrap/dist/css/bootstrap.css'
 import android from "../../images/android.png"
 import NavigationBar from '../NavigationBar/NavigationBar';
 import Footer from '../Footer/Footer';
-import "./JobDetail.css"
-const JobDetail = () => {
-
-    
-    document.body.style.backgroundColor = "#e6f2ff"
+const JobDetail1 = () => {
     const [jobtype, setjobtype] = useState();
     const [title, setjobtitle] = useState();
     const [description, setdescription] = useState();
@@ -17,21 +14,16 @@ const JobDetail = () => {
     const [qualification, setqualification] = useState();
     const [experience, setexperience] = useState();
     const [createdon, setcreatedon] = useState();
-    const [useremail, setuseremail] = useState();
+    const [email, setemail] = useState();
     const [recruitername, setrecruitername] = useState();
     const [recruiteraddress, setrecruiteraddress] = useState();
-    const [recruitercountry, setrecruitercountry] = useState();
+    const [checkuser, setcheckuser] = useState(false);
     const [recruiterurl, setrecruiterurl] = useState();
     const [recruiterphonenumber, setrecruiterphonenumber] = useState();
-    // let location = useLocation();
-    //console.log("product props is", this.props.location.productdetailProps);
-    const getuserdata = async () => {
-        const data1 = localStorage.getItem("jobdetail");
-        const data2 = JSON.parse(data1);
-        const id = data2.id;
-        const email = data2.email;
+    document.body.style.backgroundColor = "#e6f2ff"
+    const getuserdata = async (user1) => {
         try {
-            const res = await fetch("/recruiter/info/" + email, {
+            const res = await fetch("/recruiter/info/" + user1, {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
@@ -41,25 +33,20 @@ const JobDetail = () => {
 
             });
             const mydata = await res.json();
-            console.log(mydata);
+            console.log('User', mydata);
 
             if (res.status === 422) {
                 const error = new Error(res.error);
                 throw error;
             }
             else {
-                /*setname(mydata.message.name);
-                setemail(mydata.message.email);
-                setphonenumber(mydata.message.phone);
-                setcountry(mydata.message.country);
-                seturl(mydata.message.websiteurl);
-                setaddress(mydata.message.address);*/
+
                 setrecruitername(mydata.message.name);
                 setrecruiteraddress(mydata.message.address);
-                setrecruitercountry(mydata.message.country);
-                setrecruiterurl(mydata.message.websiteurl);
+                //setrecruitercountry(mydata.message.country);
                 setrecruiterphonenumber(mydata.message.phone);
-
+                setrecruiterurl(mydata.message.websiteurl);
+                //console.log("URL ",mydata.message.lur);
 
             }
 
@@ -70,13 +57,18 @@ const JobDetail = () => {
         }
     }
     const getdata = async () => {
-        const data1 = localStorage.getItem("jobdetail");
+        const data1 = localStorage.getItem("jobsdetail");
         const data2 = JSON.parse(data1);
         const id = data2.id;
-        const email = data2.email;
-        setuseremail(email);
-        console.log("JOB ID : ", id);
-        //console.log("EMAIL :",email);
+        const data3 = localStorage.getItem("userData");
+        const data4 = JSON.parse(data3);
+        if (data4.type === "Candidate") {
+            setcheckuser(true);
+        }
+        else {
+            setcheckuser(false);
+        }
+
         try {
             const res = await fetch("/recruiter/detail/" + id, {
                 method: "GET",
@@ -88,8 +80,7 @@ const JobDetail = () => {
 
             });
             const mydata = await res.json();
-            console.log(mydata.message[0]);
-            console.log(mydata.message[0].jobtitle);
+
 
             if (res.status === 422) {
                 const error = new Error(res.error);
@@ -104,27 +95,28 @@ const JobDetail = () => {
                 setqualification(mydata.message[0].qualification);
                 setexperience(mydata.message[0].experience);
                 setcreatedon(mydata.message[0].createdAt);
-                getuserdata();
+                setemail(mydata.message[0].recruiterEmail);
+                getuserdata(mydata.message[0].recruiterEmail);
             }
-
-
         }
         catch (error) {
 
         }
     }
 
+
     useEffect(() => {
+
+
+
         getdata();
 
     }, []);
     return (
-
         <>
 
             <NavigationBar />
-
-            <div className='container'>
+            <div className='container-fluid'>
 
 
                 <div className='row justify-content-md-center'>
@@ -154,7 +146,7 @@ const JobDetail = () => {
                             </div>
 
                             <div className='positions-heading'>
-                                <h5>Number of positions</h5> <p>{positions}</p>
+                                <h5>Number of positions</h5> {positions} <p></p>
                             </div>
 
 
@@ -182,30 +174,40 @@ const JobDetail = () => {
                                 <p>{recruitername}</p>
                             </div>
                             <div className='positions-heading'>
-                                <p> <i class='fas fa-map-marker-alt'></i>  {recruiteraddress}</p>
+                                <p> <i class='fas fa-map-marker-alt'></i> {recruiteraddress}</p>
                             </div>
                             <div className='positions-heading'>
                                 <p> <i class='fas fa-phone'></i>  {recruiterphonenumber}</p>
                             </div>
                             <div className='positions-heading'>
-                                <i class='far fa-envelope'></i>  <NavLink to="#">{useremail}</NavLink>
+                                <i class='far fa-envelope'></i>  <NavLink to="#">{email}</NavLink>
                             </div>
+                            <div className='positions-heading'>
+                                <i class='fa fa-globe'></i>  <NavLink to="#">{recruiterurl}</NavLink>
+                            </div>
+                            {checkuser === true &&
+                                <div>
+                                    <hr></hr>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary" type="button">Submit Your Resume</button>
 
-                            
+                                    </div>
+                                </div>}
 
-                            
+
+
                             <br></br>
                         </div>
                     </div>
                 </div>
+                <br></br>
             </div>
-            <br></br>
-            <br></br>
+
             <Footer />
         </>
 
 
-    )
+    );
 };
 
-export default JobDetail;
+export default JobDetail1;

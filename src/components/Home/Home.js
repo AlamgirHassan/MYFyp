@@ -4,8 +4,8 @@ import Footer from '../Footer/Footer'
 import React, { useEffect, useState } from 'react'
 import { NavLink,useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
-import img from "../../images/mercedescl600.jpg"
-import img1 from "../../images/mercedess680.jpg"
+import img from "../../images/verizon-logo.png"
+import img1 from "../../images/692487.jpg"
 import android from "../../images/android.png"
 import ios from "../../images/ios.png"
 import webdevelopment from "../../images/web_development.png"
@@ -17,35 +17,63 @@ import networking from "../../images/networking.png"
 
 import './Home.css'
 const Home = () => {
+    document.body.style.backgroundColor = "#e6f2ff"
     const back=useNavigate();
-    /*const callHomePage=async()=>{
-        try{
-            const res=await fetch("/home",{
-                method:"GET",
-                headers:{
-                    Accept:"application/json",
-                    "Content-Type":"application/json"
+    const [data, setData] = useState([]);
+
+
+    const clickjob=(id,email)=>{
+        console.log('Jobs',id);
+        const mydata={
+            id:id
+        }
+        localStorage.setItem("jobsdetail",JSON.stringify(mydata));
+        back('/jobsdetail');
+    }
+    const getdata = async () => {
+        try {
+            const res = await fetch("/recruiter/alljobs", {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
                 },
-                credentials:"include"
+                credentials: "include"
+
             });
-          
-            const data= await res.json();
-            console.log(data);
-            if(res.status!==200)
-            {
-                const error=new Error(res.error);
+            const mydata = await res.json();
+            console.log(mydata.message);
+            console.log(mydata.message.length)
+            if (res.status != 201) {
+                const error = new Error(res.error);
                 throw error;
             }
+            else {
+                //settitle(mydata.message.jobtitle);
+                console.log(mydata.message);
+                console.log(mydata.message.length);
 
-       }catch(err)
-        {
-            console.log(err);
-            back('/');
+                setData(mydata.message);
+
+
+
+
+
+            }
+
+
+        }
+        catch (error) {
+            console.log(error);
         }
     }
-    useEffect(()=>{
-        callHomePage();
-    },[]);*/
+    useEffect(() => {
+
+
+
+        getdata();
+
+    }, []);
 
     
 
@@ -98,89 +126,37 @@ const Home = () => {
                 </div>
 
                 <div className="container jobs_container">
-                    <div className="row">
-                        <div className="col">
-                            <div className="card " >
-                                <img className="card-img-top card-img" src={img} alt="Card image cap"  />
-                                <div className="card-body">
-                                    <h5 className="card-title">QUICK STUDIO</h5>
-                                    <p className="card-text"><bold>Web designer Needed</bold></p>
-                                    <p className="card-text">Location: Cupertino, CA, USA</p>
-                                    <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
+                 
+                <div className="row mt-2 ">
+                    {data.map((item) => {
+                        return (
+                            <div className="col mt-3">
+                                <div className="card mycard h-100" >
+
+                                    <img className="my-card-img" src={img1} alt="Card image cap" />
+                                    <div className="card-body">
+
+                                        <h5 className="card-title">{item.jobtitle}</h5>
+                                        <div className="card-text"><p>{item.description}</p> </div>
+
+                                        <div className="card-text-headings">
+                                            <p div className="headings1">{item.jobtype}</p>
+                                            <p className="headings1">{item.experience}</p>
+
+                                        </div>
+                                        <br></br>
+
+                                        <button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id)} >Check info</button>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col">
-                            <div className="card">
-                                <img className="card-img-top card-img" src={img1} alt="Card image cap" />
-                                <div className="card-body">
-                                    <h5 className="card-title">QUICK STUDIO</h5>
-                                    <p className="card-text"><bold>Web designer Needed</bold></p>
-                                    <p className="card-text">Location: Cupertino, CA, USA</p>
-                                    <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="card " >
-                                <img className="card-img-top card-img" src={img} alt="Card image cap" />
-                                <div className="card-body">
-                                    <h5 className="card-title">QUICK STUDIO</h5>
-                                    <p className="card-text"><bold>Web designer Needed</bold></p>
-                                    <p className="card-text">Location: Cupertino, CA, USA</p>
-                                    <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
-                                </div>
-                            </div>
-                        </div>
 
-
-                    </div>
-
-                    <div className="row">
-                        <div className="col">
-                            <div className="card " >
-                                <img className="card-img-top card-img" src={img} alt="Card image cap" />
-                                <div className="card-body">
-                                    <h5 className="card-title">QUICK STUDIO</h5>
-                                    <p className="card-text"><bold>Web designer Needed</bold></p>
-                                    <p className="card-text">Location: Cupertino, CA, USA</p>
-                                    <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="card">
-                                <img className="card-img-top card-img" src={img1} alt="Card image cap" />
-                                <div className="card-body">
-                                    <h5 className="card-title">QUICK STUDIO</h5>
-                                    <p className="card-text"><bold>Web designer Needed</bold></p>
-                                    <p className="card-text">Location: Cupertino, CA, USA</p>
-                                    <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="card " >
-                                <img className="card-img-top card-img" src={img} alt="Card image cap" />
-                                <div className="card-body">
-                                    <h5 className="card-title">QUICK STUDIO</h5>
-                                    <p className="card-text"><bold>Web designer Needed</bold></p>
-                                    <p className="card-text">Location: Cupertino, CA, USA</p>
-                                    <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
+                        )
+                    })}
+                </div>
+                <br></br>
+                    
 
 
 

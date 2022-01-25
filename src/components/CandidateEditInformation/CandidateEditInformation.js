@@ -6,7 +6,7 @@ import "./CandidateEditInformation.css"
 import NavigationBar from '../NavigationBar/NavigationBar';
 import Footer from '../Footer/Footer';
 const CandidateEditInformation = () => {
-
+    document.body.style.backgroundColor = "#e6f2ff"
     const back=useNavigate();
 
     const [candidate, setcandidate] = useState();

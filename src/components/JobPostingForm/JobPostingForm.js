@@ -5,6 +5,7 @@ import ErrorMessage from '../othercomponents/ErrorMessage';
 import Loading from '../othercomponents/Loading';
 import { useNavigate } from 'react-router-dom';
 const JobPostingForm = () => {
+    document.body.style.backgroundColor = "#e6f2ff"
     const back=useNavigate();
     const [jobdata, setjobdata] = useState({
         jobtitle: "", skills: "Web Development", description: "", positions: "1", location: "Lahore", experience: "Fresh", qualification: "Intermediate", jobtype: "Internship",
@@ -99,7 +100,7 @@ const JobPostingForm = () => {
                         <input className='form-control' type="text" name='jobtitle' id='jobTitle' value={jobdata.jobtitle} onChange={handleInputs} placeholder='Enter Job Title' required></input>
                     </div>
                     <div className='col-md-6'>
-                        <label for="Skills" className='form-label'>Skills</label>
+                        <label for="Skills" className='form-label'>Category</label>
                         <select class="form-select" aria-label="Skills" name='skills' value={jobdata.skills} onChange={handleInputs} id="skills" required>
 
                             <option value="Web Development" selected>Web Development</option>

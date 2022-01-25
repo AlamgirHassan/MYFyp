@@ -7,7 +7,7 @@ import NavigationBar from '../NavigationBar/NavigationBar';
 import Footer from '../Footer/Footer';
 import ErrorMessage from '../othercomponents/ErrorMessage';
 const RecruiterEditInformation = () => {
-
+    document.body.style.backgroundColor = "#e6f2ff"
     const back = useNavigate();
 
     const [recruiter, setrecruiter] = useState();

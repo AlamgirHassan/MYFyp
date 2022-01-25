@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import Footer from '../Footer/Footer';
-import img from "../../images/mercedescl600.jpg"
-import img1 from "../../images/mercedess680.jpg"
+
+
 import { NavLink,useNavigate } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.css'
 import "./YourJobs.css"
-import android from "../../images/android.png"
+
+import img1 from '../../images/cover_img.jpg'
 const YourJobs = () => {
+    document.body.style.backgroundColor = "#e6f2ff"
     const back=useNavigate();
     const clickjob=(id,email)=>{
         console.log('Jobs',id);
@@ -18,6 +20,17 @@ const YourJobs = () => {
         }
         localStorage.setItem("jobdetail",JSON.stringify(mydata));
         back('/jobdetail');
+    }
+
+    const editjob=(id,email)=>{
+        console.log('Jobs',id);
+        console.log('Email ',email);
+        const mydata={
+            id:id,
+            email:email
+        }
+        localStorage.setItem("jobdetail",JSON.stringify(mydata));
+        back('/editjobs');
     }
     const [title, settitle] = useState();
     const [data, setData] = useState([]);
@@ -55,12 +68,7 @@ const YourJobs = () => {
                 setData(mydata.message);
 
 
-                /*setname(mydata.message.name);
-                 setemail(mydata.message.email);
-                 setphonenumber(mydata.message.phone);
-                 setcountry(mydata.message.country);
-                 seturl(mydata.message.websiteurl);
-                 setaddress(mydata.message.address);*/
+            
 
 
             }
@@ -68,7 +76,7 @@ const YourJobs = () => {
 
         }
         catch (error) {
-
+            console.log(error);
         }
 
     }
@@ -91,7 +99,7 @@ const YourJobs = () => {
                             <div className="col mt-3">
                                 <div className="card mycard h-100" >
 
-                                    <img className="my-card-img" src={img} alt="Card image cap" />
+                                    <img className="my-card-img" src={img1} alt="Card image cap" />
                                     <div className="card-body">
 
                                         <h5 className="card-title">{item.jobtitle}</h5>
@@ -105,7 +113,7 @@ const YourJobs = () => {
                                         <br></br>
 
                                         <button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id,item.recruiterEmail)}>Check info</button>
-                                        <NavLink type='button' to="#" className="btn btn-success card-btn">Edit Job</NavLink>
+                                        <button type='button' to="#" className="btn btn-success card-btn" onClick={() =>editjob (item._id,item.recruiterEmail)}>Edit Job</button>
                                         <NavLink type='button' to="#" className="btn btn-danger card-btn">Delete Job</NavLink>
                                     </div>
                                 </div>
@@ -132,6 +140,7 @@ const YourJobs = () => {
 
                 }
 
+                <br></br>
                 <br></br>
             </div>
 

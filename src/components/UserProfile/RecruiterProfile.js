@@ -1,16 +1,17 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import NavigationBar from '../NavigationBar/NavigationBar'
 import img1 from '../../images/cover_img.jpg'
 import "./CandidateProfile.css"
 import Footer from '../Footer/Footer';
 const Recruiterprofile = () => {
-
+    document.body.style.backgroundColor = "#e6f2ff"
     const [name, setname] = useState();
-    const[email,setemail]=useState();
-    const[phonenumber,setphonenumber]=useState();
-    const[country,setcountry]=useState();
-    const[url,seturl]=useState();
-    const[address,setaddress]=useState();
+    const [email, setemail] = useState();
+    const [phonenumber, setphonenumber] = useState();
+    const [country, setcountry] = useState();
+    const [url, seturl] = useState();
+    const [address, setaddress] = useState();
+    const[image,setimage]=useState();
     const getdata = async () => {
         const data = localStorage.getItem("userData");
         const data1 = JSON.parse(data);
@@ -42,7 +43,7 @@ const Recruiterprofile = () => {
                 setcountry(mydata.message.country);
                 seturl(mydata.message.websiteurl);
                 setaddress(mydata.message.address);
-                
+
             }
 
 
@@ -63,7 +64,7 @@ const Recruiterprofile = () => {
         <>
             <NavigationBar />
             <h1 className='text-center'>Recruiter Profile</h1>
-            <div className='container mt-5 border'>
+            <div className='container profilecontainer mt-5 border'>
                 <div className='row s-2 g-3'>
                     <div className='col-md-6'>
                         <img src={img1} className="rounded-circle float-left img1" alt="Logo" />

@@ -53,7 +53,7 @@ const RecruiterLogin = () => {
 
             else {
                 console.log('Resp ', data.message);
-                window.alert("Recruiter Login successfully");
+                //window.alert("Recruiter Login successfully");
                 seterror(false);
                 setloading(false);
                 const usrdata = {

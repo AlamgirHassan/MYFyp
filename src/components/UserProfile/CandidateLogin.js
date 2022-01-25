@@ -54,7 +54,7 @@ const CandidateLogin = () => {
 
       else {
         console.log('Resp ', data.message);
-        window.alert("Candidate Login successfully");
+        //window.alert("Candidate Login successfully");
        
         seterror(false);
         setloading(false);

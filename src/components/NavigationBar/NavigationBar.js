@@ -64,6 +64,7 @@ const NavigationBar = () => {
                                     <li><NavLink class="dropdown-item text-center" to="/cpass">Change Password</NavLink></li>
                                     <li><NavLink class="dropdown-item text-center" to="/jform">Post Job</NavLink></li>
                                     <li><NavLink class="dropdown-item text-center" to="/yourjobs">Your Jobs</NavLink></li>
+                                    <li><NavLink class="dropdown-item text-center" to="/candidatelist">Candidates List</NavLink></li>
                                     <li><NavLink class="dropdown-item text-center" to="/logout">Logout</NavLink></li>
                                 </ul>
                             </li>}

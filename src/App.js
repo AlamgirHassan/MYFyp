@@ -21,6 +21,8 @@ import Recruiterprofile from './components/UserProfile/RecruiterProfile';
 import ChangePssword from './components/UserProfile/ChangePassword';
 import UserLogout from './components/UserProfile/UserLogout';
 import YourJobs from './components/YourJobs/YourJobs';
+import EditJobForm from './components/JobPostingForm/EditJobForm';
+import JobDetail1 from './components/JobDetail/JobDetail1';
 function App() {
   return (
     <BrowserRouter>
@@ -43,6 +45,8 @@ function App() {
         <Route exact path="/cpass" element={<ChangePssword/>}/>
         <Route exact path="/logout" element={<UserLogout/>}/>
         <Route exact path="/yourjobs" element={<YourJobs/>}/>
+        <Route exact path="/editjobs" element={<EditJobForm/>}/>
+        <Route exact path="/jobsdetail" element={<JobDetail1/>}/>
         <Route path="*" element={<Not_Found/>}/>
 
  

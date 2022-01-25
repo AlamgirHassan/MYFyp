@@ -3,6 +3,7 @@ import "./ChangePassword.css"
 import Footer from '../Footer/Footer';
 import NavigationBar from '../NavigationBar/NavigationBar';
 const ChangePssword = () => {
+    document.body.style.backgroundColor = "#e6f2ff"
     const [password, setpassword] = useState({
         cpassword:"",newpassword:"",newcpassword:"",
     })

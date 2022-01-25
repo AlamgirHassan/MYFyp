@@ -5,6 +5,7 @@ import RecruiterRegisteration from '../CandidateRegisteration/RecruiterRegistera
 import './signup.css'
 import 'bootstrap/dist/css/bootstrap.css'
 const Signup = () => {
+    document.body.style.backgroundColor = "#e6f2ff"
     const [user, setuser] = useState("Candidate")
     return (
         <>

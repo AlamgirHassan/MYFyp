@@ -71,7 +71,7 @@ const CandidateRegisteration = () => {
                 }
                 else {
                     console.log('Resp ',data.message);
-                    window.alert("Data saved successfully");
+                   // window.alert("Data saved successfully");
                     seterror(false);
                     setloading(false);
                     back('/');
