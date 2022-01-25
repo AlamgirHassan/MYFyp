@@ -107,7 +107,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
+                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
+                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
+                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
+                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +160,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
+                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +172,7 @@ const Home = () => {
                                     <p className="card-text"><bold>Web designer Needed</bold></p>
                                     <p className="card-text">Location: Cupertino, CA, USA</p>
                                     <p className="card-text">Type: Full time</p>
-                                    <NavLink type='button' to="/jobdetail" className="btn btn-secondary card-btn">Check Info</NavLink>
+                                    <NavLink type='button' to="#" className="btn btn-secondary card-btn">Check Info</NavLink>
                                 </div>
                             </div>
                         </div>

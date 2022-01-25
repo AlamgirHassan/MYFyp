@@ -19,6 +19,7 @@ const CandidateEditInformation = () => {
     const [usergender, setusergender] = useState();
     const [useraddress, setuseraddress] = useState();
     
+    
     const PostData = async (e) => {
         e.preventDefault();
         

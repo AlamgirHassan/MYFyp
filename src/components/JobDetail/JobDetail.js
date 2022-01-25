@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import android from "../../images/android.png"
 import NavigationBar from '../NavigationBar/NavigationBar';
@@ -7,7 +7,117 @@ import Footer from '../Footer/Footer';
 import "./JobDetail.css"
 const JobDetail = () => {
 
+
     document.body.style.backgroundColor = "#e6f2ff"
+    const [jobtype, setjobtype] = useState();
+    const [title, setjobtitle] = useState();
+    const [description, setdescription] = useState();
+    const [skills, setskills] = useState();
+    const [positions, setpositions] = useState();
+    const [qualification, setqualification] = useState();
+    const [experience, setexperience] = useState();
+    const [createdon, setcreatedon] = useState();
+    const [useremail, setuseremail] = useState();
+    const [recruitername, setrecruitername] = useState();
+    const [recruiteraddress, setrecruiteraddress] = useState();
+    const [recruitercountry, setrecruitercountry] = useState();
+    const [recruiterurl, setrecruiterurl] = useState();
+    const [recruiterphonenumber, setrecruiterphonenumber] = useState();
+    // let location = useLocation();
+    //console.log("product props is", this.props.location.productdetailProps);
+    const getuserdata = async () => {
+        const data1 = localStorage.getItem("jobdetail");
+        const data2 = JSON.parse(data1);
+        const id = data2.id;
+        const email = data2.email;
+        try {
+            const res = await fetch("/recruiter/info/" + email, {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+
+            });
+            const mydata = await res.json();
+            console.log(mydata);
+
+            if (res.status === 422) {
+                const error = new Error(res.error);
+                throw error;
+            }
+            else {
+                /*setname(mydata.message.name);
+                setemail(mydata.message.email);
+                setphonenumber(mydata.message.phone);
+                setcountry(mydata.message.country);
+                seturl(mydata.message.websiteurl);
+                setaddress(mydata.message.address);*/
+                setrecruitername(mydata.message.name);
+                setrecruiteraddress(mydata.message.address);
+                setrecruitercountry(mydata.message.country);
+                setrecruiterurl(mydata.message.websiteurl);
+                setrecruiterphonenumber(mydata.message.phone);
+
+
+            }
+
+
+        }
+        catch (error) {
+
+        }
+    }
+    const getdata = async () => {
+        const data1 = localStorage.getItem("jobdetail");
+        const data2 = JSON.parse(data1);
+        const id = data2.id;
+        const email = data2.email;
+        setuseremail(email);
+        console.log("JOB ID : ", id);
+        //console.log("EMAIL :",email);
+        try {
+            const res = await fetch("/recruiter/detail/" + id, {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+
+            });
+            const mydata = await res.json();
+            console.log(mydata.message[0]);
+            console.log(mydata.message[0].jobtitle);
+
+            if (res.status === 422) {
+                const error = new Error(res.error);
+                throw error;
+            }
+            else {
+                setjobtitle(mydata.message[0].jobtitle);
+                setjobtype(mydata.message[0].jobtype);
+                setdescription(mydata.message[0].description);
+                setskills(mydata.message[0].skills);
+                setpositions(mydata.message[0].positions);
+                setqualification(mydata.message[0].qualification);
+                setexperience(mydata.message[0].experience);
+                setcreatedon(mydata.message[0].createdAt);
+                getuserdata();
+            }
+
+
+        }
+        catch (error) {
+
+        }
+    }
+
+    useEffect(() => {
+        getdata();
+
+    }, []);
     return (
 
         <>
@@ -23,11 +133,11 @@ const JobDetail = () => {
                             <div class="aligned">
                                 <img src={android} className='myimage' alt="Logo" />
                                 <div className='mytext'>
-                                    <p className='jobtitle'>FRONT-END DEVELOPER NEEDED</p>
-                                    <p>BANANA INC</p>
-                                    <p className='companyaddress'>PARK AVE,NYC, USA</p>
+                                    <p className='jobtitle'>{title}</p>
+                                    <p>{recruitername}</p>
+                                    <p className='companyaddress'>{recruiteraddress}</p>
                                     <p className='divider'>.</p>
-                                    <p className='jobtype'>FULL TIME</p>
+                                    <p className='jobtype'>{jobtype}</p>
                                 </div>
 
                             </div>
@@ -36,31 +146,29 @@ const JobDetail = () => {
 
                             <h5 className='jobdetailheading'>Job Description</h5>
 
-                            <p>Etiam quis interdum felis, at pellentesque metus. Morbi eget congue lectus. Donec eleifend ultricies urna et euismod. Sed consectetur tellus eget odio aliquet, vel vestibulum tellus sollicitudin. Morbi maximus metus eu eros tincidunt, vitae mollis ante imperdiet. Nulla imperdiet at mauris ut posuere.
-
-                                Nullam tempor, ipsum eget egestas viverra, velit augue fringilla arcu, et sollicitudin enim eros nec est. Suspendisse volutpat velit non porttitor placerat. Mauris porttitor aliquam bibendum. Nam at ultrices justo. Mauris eget urna magna.</p>
+                            <p>{description}</p>
 
 
                             <div className='positions-heading'>
-                                <h5>Skills Required</h5> <p>Skill</p>
+                                <h5>Skills Required</h5> <p>{skills}</p>
                             </div>
 
                             <div className='positions-heading'>
-                                <h5>Number of positions</h5> <p>Seat Number</p>
-                            </div>
-
-
-                            <div className='positions-heading'>
-                                <h5>Minimum Qualification</h5> <p>Qualification</p>
+                                <h5>Number of positions</h5> <p>{positions}</p>
                             </div>
 
 
                             <div className='positions-heading'>
-                                <h5>Experience Required</h5> <p>Experience</p>
+                                <h5>Minimum Qualification</h5> <p>{qualification}</p>
+                            </div>
+
+
+                            <div className='positions-heading'>
+                                <h5>Experience Required</h5> <p>{experience}</p>
                             </div>
 
                             <div className='positions-heading'>
-                                <h5>Job Created On</h5> <p>21-01-2022</p>
+                                <h5>Job Created On</h5> <p>{createdon}</p>
                             </div>
 
 
@@ -74,18 +182,16 @@ const JobDetail = () => {
                                 <p>BANANA INC</p>
                             </div>
                             <div className='positions-heading'>
-                                <p> <i class='fas fa-map-marker-alt'></i>  56/23 Park Ave, Manhattan NYC 10001, USA</p>
+                                <p> <i class='fas fa-map-marker-alt'></i>  {recruiteraddress}</p>
                             </div>
                             <div className='positions-heading'>
-                                <p> <i class='fas fa-phone'></i>  +92-300-1234567</p>
+                                <p> <i class='fas fa-phone'></i>  {recruiterphonenumber}</p>
                             </div>
                             <div className='positions-heading'>
-                                <i class='far fa-envelope'></i>  <NavLink to="#">hr@banana.inc</NavLink>
+                                <i class='far fa-envelope'></i>  <NavLink to="#">{useremail}</NavLink>
                             </div>
 
-                            <div className='positions-heading'>
-                                <i class='fas fa-globe-africa'></i>  <NavLink to="#"> https://banana.inc</NavLink>
-                            </div>
+                            
 
                             <hr></hr>
                             <div class="d-grid gap-2">

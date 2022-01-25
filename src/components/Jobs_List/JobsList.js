@@ -18,7 +18,7 @@ const JobsList = () => {
                     <div className="col ">
 
 
-                        <div className="card " >
+                        <div className="card" >
                             <img className="my-card-img" src={img} alt="Card image cap" />
                             <div className="card-body">
                                 <h5 className="card-title">UI/UX designer needed</h5>
