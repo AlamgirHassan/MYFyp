@@ -49,7 +49,7 @@ const Home = () => {
                 throw error;
             }
             else {
-                //settitle(mydata.message.jobtitle);
+                
                 console.log(mydata.message);
                 console.log(mydata.message.length);
 
@@ -130,7 +130,7 @@ const Home = () => {
                 <div className="row mt-2 ">
                     {data.map((item) => {
                         return (
-                            <div className="col mt-3">
+                            <div className="col col-lg-4 mt-3">
                                 <div className="card mycard h-100" >
 
                                     <img className="my-card-img" src={img1} alt="Card image cap" />

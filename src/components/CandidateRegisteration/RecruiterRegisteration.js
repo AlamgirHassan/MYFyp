@@ -31,7 +31,7 @@ const RecruiterRegisteration = () => {
     const PostData = async (e) => {
         e.preventDefault();
         setloading(true);
-        const { email, password, name, address, phonenumber, cpassword, country, websiteurl,image } = recruiter;
+        const { email, password, name, address, phonenumber, cpassword, country, websiteurl } = recruiter;
         
         if (password !== cpassword) {
             setmessage("Passwords do not match");
@@ -60,7 +60,7 @@ const RecruiterRegisteration = () => {
                         phonenumber: phonenumber,
                         url: websiteurl,
                         password: password,
-                        image:image,
+                       
 
 
                     })
@@ -68,8 +68,7 @@ const RecruiterRegisteration = () => {
                 const data = await res.json();
                 console.log("Data : ",data);
                 if (res.status == 422 || !data) {
-                    //window.alert("Invalid Registration");
-                    //console.log("Error ",data.error);
+                    
                     console.log("Registeration Invalid");
 
                     seterror(data.error);
@@ -80,7 +79,7 @@ const RecruiterRegisteration = () => {
                 }
                 else {
                     console.log('Resp ', data.message);
-                    //window.alert("Data saved successfully");
+                  
                     seterror(false);
                     setloading(false);
                     back('/');

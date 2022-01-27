@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import Footer from '../Footer/Footer';
-
-
 import { NavLink,useNavigate } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.css'
 import "./YourJobs.css"
-
 import img1 from '../../images/cover_img.jpg'
 const YourJobs = () => {
     document.body.style.backgroundColor = "#e6f2ff"
@@ -31,6 +28,41 @@ const YourJobs = () => {
         }
         localStorage.setItem("jobdetail",JSON.stringify(mydata));
         back('/editjobs');
+    }
+    const deletejobdata=async (id)=>{
+        try {
+            const res = await fetch("/recruiter/deletejob/" + id, {
+                method: "DELETE",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+
+            });
+            const mydata = await res.json();
+            console.log(mydata.message);
+           
+            if (res.status != 201) {
+                const error = new Error(res.error);
+                throw error;
+            }
+            else {
+                //settitle(mydata.message.jobtitle);
+                console.log("Message : ",mydata.message);
+                //console.log("Job delete successfully");
+                window.location.reload(false);
+
+
+            }
+
+
+        }
+        catch (error) {
+            console.log(error);
+        }
+
+
     }
     const [title, settitle] = useState();
     const [data, setData] = useState([]);
@@ -114,7 +146,7 @@ const YourJobs = () => {
 
                                         <button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id,item.recruiterEmail)}>Check info</button>
                                         <button type='button' to="#" className="btn btn-success card-btn" onClick={() =>editjob (item._id,item.recruiterEmail)}>Edit Job</button>
-                                        <NavLink type='button' to="#" className="btn btn-danger card-btn">Delete Job</NavLink>
+                                        <button type='button' to="#" className="btn btn-danger card-btn" onClick={() =>deletejobdata (item._id)}>Delete Job</button>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +157,7 @@ const YourJobs = () => {
 
                 {isdata == false &&
                     <div className='notjobyet'>
-                        <h4 className='text-center'>No Job posted by you yet</h4>
+                        <h4 className='text-center'>Your Job edited successfully</h4>
                         <br></br>
                         <br></br>
                         <br></br>
