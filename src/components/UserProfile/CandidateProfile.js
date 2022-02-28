@@ -48,6 +48,8 @@ const Userprofile = () => {
                 setusercountry(mydata.message.country);
                 setusergender(mydata.message.gender);
                 setuseraddress(mydata.message.address);
+                setuserimage(mydata.message.image);
+                console.log("Image:",mydata.message.image)
                 //setuserimage(mydata.message.image);
             }
 

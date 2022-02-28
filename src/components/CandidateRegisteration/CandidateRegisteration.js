@@ -10,8 +10,11 @@ const CandidateRegisteration = () => {
 
     const back = useNavigate();
     const [candidate, setcandidate] = useState({
-        firstname: "", lastname: "", email: "", address: "", dob: "", country: "Afghanistan", password: "", cpassword: "", gender: "Male", status: "Employeed", image: ""
+        firstname: "", lastname: "", email: "", address: "", dob: "", country: "Afghanistan", password: "", cpassword: "", gender: "Male", status: "Employeed"
     });
+    const [candidateinfo, setcandidateinfo] = useState({
+        image: []
+    })
     const [message, setmessage] = useState(null);
     const [error, seterror] = useState(false);
     const [loading, setloading] = useState(false);
@@ -21,22 +24,36 @@ const CandidateRegisteration = () => {
         let value = e.target.value;
         setcandidate({ ...candidate, [name]: value })
     }
+    const handleInputs1 = (e) => {
+        console.log(e);
+
+        setcandidateinfo({
+            ...candidateinfo,
+            image: e.target.files[0]
+        })
+    }
+
     const PostData = async (e) => {
         e.preventDefault();
         setloading(true);
         const { email, password, firstname, lastname, address, cpassword, country, dob, gender, status } = candidate;
+        const { image } = candidateinfo;
+        //console.log("Image ",image.slice(12));
+        //image=image.slice(12);
         if (password !== cpassword) {
             setmessage("Passwords do not match");
             setloading(false);
         }
+
         else {
+
             setmessage(null);
             try {
 
-                const res = await fetch("/candidate/register", {
+                /*const res = await fetch("/candidate/register", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "mult"
                     },
                     body: JSON.stringify({
                         firstname: firstname,
@@ -48,30 +65,48 @@ const CandidateRegisteration = () => {
                         emp_status: status,
                         password: password,
                         cpassword: cpassword,
-                        dob: dob
-
+                        dob: dob,
+                        
+ 
                     })
+                });*/
+                const formdata = new FormData();
+                formdata.append("firstname", firstname);
+                formdata.append("lastname", lastname);
+                formdata.append("email", email);
+                formdata.append("country", country);
+                formdata.append("address", address);
+                formdata.append("gender", gender);
+                formdata.append("emp_status", status);
+                formdata.append("password", password);
+                formdata.append("dob", dob);
+                formdata.append("image_url", image);
+                const res = await fetch("/candidate/register", {
+                    method: "POST",
+                    body: formdata
                 });
 
                 const data = await res.json();
                 //console.log('Response ' + data.json);
                 //console.log('Response',data.error);
                 //console.log('Status ',res.status);
-                if (res.status == 422 || !data ) {
+                if (res.status === 422 || !data) {
                     //window.alert("Invalid Registration");
                     //console.log("Error ",data.error);
                     console.log("Registeration Invalid");
-                    
+
                     seterror(data.error);
                     setloading(false);
                 }
-                else if(res.status==500)
-                {
+                else if (res.status === 500) {
                     seterror(data.message);
                 }
                 else {
-                    console.log('Resp ',data.message);
-                   // window.alert("Data saved successfully");
+                    console.log('Resp ', data.message);
+                    // window.alert("Data saved successfully");
+                    //let newpath=path.join(process.cwd(),'../images',email+"_"+image.name)
+                    //req.files.image_url.mv(newpath);
+                    //image.mv(newpath);
                     seterror(false);
                     setloading(false);
                     back('/');
@@ -81,6 +116,8 @@ const CandidateRegisteration = () => {
                 seterror(error.response.data.message);
                 setloading(false);
             }
+
+
         }
 
 
@@ -444,7 +481,7 @@ const CandidateRegisteration = () => {
                         <br></br>
                         <div className="mb-3">
                             <label for="formFile" className="form-label">Your Image</label>
-                            <input className="form-control" type="file" accept="image/*" id="formFile" name="image" required value={candidate.image} onChange={handleInputs} />
+                            <input className="form-control" type="file" accept="image/*" id="formFile" name="image" required value={candidate.image} onChange={handleInputs1} />
                             <div className="invalid-feedback">
                                 Please upload your Image.
                             </div>

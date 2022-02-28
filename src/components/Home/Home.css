@@ -171,7 +171,7 @@ margin-right: auto;
 
   .image:hover .categories_images{
     filter:blur(8px) brightness(20%);
-    box-shadow:0 0 16px cyan;
+    box-shadow:0 0 12px cyan;
     background-color: black;
   }
    
@@ -208,7 +208,7 @@ margin-right: auto;
 {
     color: white;
     text-align: center;
-   margin: 3%5%;
+    margin: 3%5%;
 }
 .heading2
 {

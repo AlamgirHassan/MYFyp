@@ -23,6 +23,7 @@ import UserLogout from './components/UserProfile/UserLogout';
 import YourJobs from './components/YourJobs/YourJobs';
 import EditJobForm from './components/JobPostingForm/EditJobForm';
 import JobDetail1 from './components/JobDetail/JobDetail1';
+import Example from './components/Example/example';
 function App() {
   return (
     <BrowserRouter>
@@ -47,6 +48,8 @@ function App() {
         <Route exact path="/yourjobs" element={<YourJobs/>}/>
         <Route exact path="/editjobs" element={<EditJobForm/>}/>
         <Route exact path="/jobsdetail" element={<JobDetail1/>}/>
+
+        <Route exact path="/example1" element={<Example/>}/>
         <Route path="*" element={<Not_Found/>}/>
 
  

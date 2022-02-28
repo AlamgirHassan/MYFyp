@@ -130,7 +130,7 @@ const Home = () => {
                 <div className="row mt-2 ">
                     {data.map((item) => {
                         return (
-                            <div className="col col-lg-4 mt-3">
+                            <div className="col col-lg-4 mt-4">
                                 <div className="card mycard h-100" >
 
                                     <img className="my-card-img" src={img1} alt="Card image cap" />
@@ -181,7 +181,7 @@ const Home = () => {
                 <h1 className="jobsheading1">Categories</h1>
                 <div className="container">
                     <div className="row">
-                        <div className='col'>
+                        <div className='col-lg-3 col-md-6 col-sm-6'>
 
                             <p>
                                 <NavLink to="#">
@@ -196,7 +196,7 @@ const Home = () => {
                                 </NavLink>
                             </p>
                         </div>
-                        <div className='col'>
+                        <div className='col-lg-3 col-md-6 col-sm-6'>
                             <p>
                                 <NavLink to="#">
 
@@ -210,7 +210,7 @@ const Home = () => {
                                 </NavLink>
                             </p>
                         </div>
-                        <div className='col'>
+                        <div className='col-lg-3 col-md-6 col-sm-6'>
                             <p>
                                 <NavLink to="#">
 
@@ -223,7 +223,7 @@ const Home = () => {
                                 </NavLink>
                             </p>
                         </div>
-                        <div className='col'>
+                        <div className='col-lg-3 col-md-6 col-sm-6'>
                             <p>
                                 <NavLink to="#">
 
@@ -239,7 +239,7 @@ const Home = () => {
                     </div>
                     <hr className="row-divider"></hr>
                     <div className="row">
-                        <div className='col'>
+                        <div className='col-lg-3 col-md-6 col-sm-6'>
 
                             <p>
                                 <NavLink to="#">
@@ -253,7 +253,7 @@ const Home = () => {
                                 </NavLink>
                             </p>
                         </div>
-                        <div className='col'>
+                        <div className='col-lg-3 col-md-6 col-sm-6'>
                             <p>
                                 <NavLink to="#">
 
@@ -266,7 +266,7 @@ const Home = () => {
                                 </NavLink>
                             </p>
                         </div>
-                        <div className='col'>
+                        <div className='col-lg-3 col-md-6 col-sm-6'>
                             <p>
                                 <NavLink to="#">
 
@@ -279,7 +279,7 @@ const Home = () => {
                                 </NavLink>
                             </p>
                         </div>
-                        <div className='col'>
+                        <div className='col-lg-3 col-md-6 col-sm-6'>
                             <p>
                                 <NavLink to="#">
 
