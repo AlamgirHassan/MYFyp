@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink,useNavigate } from "react-router-dom"
+import { NavLink,useNavigate,Link } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.css'
 import "./JobsList.css"
 
@@ -14,14 +14,14 @@ const JobsList = () => {
     const [data, setData] = useState([]);
 
 
-    const clickjob=(id,email)=>{
+    /*const clickjob=(id,email)=>{
         console.log('Jobs',id);
         const mydata={
             id:id
         }
         localStorage.setItem("jobsdetail",JSON.stringify(mydata));
         back('/jobsdetail');
-    }
+    }*/
     const getdata = async () => {
         try {
             const res = await fetch("/recruiter/alljobs", {
@@ -92,8 +92,8 @@ const JobsList = () => {
                                         </div>
                                         <br></br>
 
-                                        <button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id)} >Check info</button>
-
+                                        {/*<button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id)} >Check info</button>*/}
+                                        <Link to="/jobsdetail" state={{ id: item._id }} type="button" className='btn btn-secondary card-btn'>Check Info</Link>
                                     </div>
                                 </div>
                             </div>

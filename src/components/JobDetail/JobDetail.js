@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation,useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import android from "../../images/android.png"
 import NavigationBar from '../NavigationBar/NavigationBar';
@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 import "./JobDetail.css"
 const JobDetail = () => {
 
-    
+    const back=useNavigate();
     document.body.style.backgroundColor = "#e6f2ff"
     const [jobtype, setjobtype] = useState();
     const [title, setjobtitle] = useState();
@@ -110,6 +110,8 @@ const JobDetail = () => {
 
         }
         catch (error) {
+            console.log('Error:',error)
+            back('/');
 
         }
     }

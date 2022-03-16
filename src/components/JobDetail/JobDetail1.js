@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation,useNavigate } from 'react-router-dom'
 import "./JobDetail.css"
 import 'bootstrap/dist/css/bootstrap.css'
 import android from "../../images/android.png"
 import NavigationBar from '../NavigationBar/NavigationBar';
 import Footer from '../Footer/Footer';
+
 const JobDetail1 = () => {
+    const location = useLocation()
+    const back=useNavigate();
     const [jobtype, setjobtype] = useState();
     const [title, setjobtitle] = useState();
     const [description, setdescription] = useState();
@@ -20,6 +23,7 @@ const JobDetail1 = () => {
     const [checkuser, setcheckuser] = useState(false);
     const [recruiterurl, setrecruiterurl] = useState();
     const [recruiterphonenumber, setrecruiterphonenumber] = useState();
+    //console.log("Props : ",props.info)
     document.body.style.backgroundColor = "#e6f2ff"
     const getuserdata = async (user1) => {
         try {
@@ -57,9 +61,10 @@ const JobDetail1 = () => {
         }
     }
     const getdata = async () => {
-        const data1 = localStorage.getItem("jobsdetail");
+        /*const data1 = localStorage.getItem("jobsdetail");
         const data2 = JSON.parse(data1);
-        const id = data2.id;
+        const id = data2.id;*/
+        const { id } = location.state
         const data3 = localStorage.getItem("userData");
         const data4 = JSON.parse(data3);
         if (data4.type === "Candidate") {
@@ -100,7 +105,8 @@ const JobDetail1 = () => {
             }
         }
         catch (error) {
-
+            console.log('Error : ',error);
+            back('/');
         }
     }
 

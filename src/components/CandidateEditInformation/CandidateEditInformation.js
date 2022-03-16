@@ -18,6 +18,7 @@ const CandidateEditInformation = () => {
     const [usercountry, setusercountry] = useState();
     const [usergender, setusergender] = useState();
     const [useraddress, setuseraddress] = useState();
+    const[userimage,setuserimage]=useState();
     
     
     const PostData = async (e) => {
@@ -95,12 +96,16 @@ const CandidateEditInformation = () => {
                 setuserdob(mydata.message.dob);
                 setusercountry(mydata.message.country);
                 setusergender(mydata.message.gender);
-                setuseraddress(mydata.message.address);    
+                setuseraddress(mydata.message.address);   
+                setuserimage(mydata.message.image); 
+                
             }
 
 
         }
         catch (error) {
+            console.log(error);
+            back('/')
 
         }
     }
@@ -120,13 +125,10 @@ const CandidateEditInformation = () => {
 
 
                             <h3>{candidate}</h3>
-                            <img src={android} className='edtuserimage rounded-circle' alt="Candidate-Image" />
+                            <img src={`http://localhost:8000/candidate_img/${userimage}`} className='edtuserimage ' alt="Candidate-Image" />
 
 
-                            <input className="" type="file" accept="image/*" id="formFile" name="image" required />
-                            <div className="invalid-feedback">
-                                Please upload your Image.
-                            </div>
+                          
 
 
 

@@ -2,7 +2,7 @@
 import NavigationBar from '../NavigationBar/NavigationBar'
 import Footer from '../Footer/Footer'
 import React, { useEffect, useState } from 'react'
-import { NavLink,useNavigate } from 'react-router-dom'
+import { NavLink,Link,useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import img from "../../images/verizon-logo.png"
 import img1 from "../../images/692487.jpg"
@@ -14,22 +14,56 @@ import ai from "../../images/artificial_intelligence.png"
 import sd from "../../images/software_development.png"
 import csecurity from "../../images/cyber_security.png"
 import networking from "../../images/networking.png"
+import JobDetail1 from "../JobDetail/JobDetail1"
 
 import './Home.css'
 const Home = () => {
     document.body.style.backgroundColor = "#e6f2ff"
     const back=useNavigate();
     const [data, setData] = useState([]);
+    const[counter,setcounter]=useState(1);
 
 
-    const clickjob=(id,email)=>{
+    /*const clickjob=(id,email)=>{
         console.log('Jobs',id);
         const mydata={
             id:id
         }
-        localStorage.setItem("jobsdetail",JSON.stringify(mydata));
+        localStorage.setItem("jobsdetail",JSON.stringify(mydata));//
         back('/jobsdetail');
-    }
+    }*/
+    /*
+    const clickjob=(id)=>{
+        console.log("ID : ",id);
+        <JobDetail1 info={id}/>
+        back('/jobsdetail');
+    }*/
+    
+    /*const checkUser=async()=>{
+        try
+        {
+            const res=await fetch('/candidate/getcookie',{
+                method:"GET",
+                headers:{
+                    Accept:"application/json",
+                    "Content-Type":"application/json"
+                },
+                credentials:"include"
+            });
+            const data=await res.json();
+            //console.log("Data:",data);
+            if(res.status!==200)
+            {
+                const error=new Error(res.error);
+                throw error;
+            }
+        }
+        catch(err)
+        {
+            console.log(err);
+            back('/');
+        }
+    }*/
     const getdata = async () => {
         try {
             const res = await fetch("/recruiter/alljobs", {
@@ -65,12 +99,13 @@ const Home = () => {
         }
         catch (error) {
             console.log(error);
+            back('/')
         }
     }
     useEffect(() => {
 
 
-
+        //checkUser();
         getdata();
 
     }, []);
@@ -128,8 +163,9 @@ const Home = () => {
                 <div className="container jobs_container">
                  
                 <div className="row mt-2 ">
-                    {data.map((item) => {
+                    {data.slice(0,6).map((item) => {
                         return (
+
                             <div className="col col-lg-4 mt-4">
                                 <div className="card mycard h-100" >
 
@@ -145,8 +181,15 @@ const Home = () => {
 
                                         </div>
                                         <br></br>
+                                    
 
-                                        <button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id)} >Check info</button>
+                                        {/*<button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id)} >Check info</button>*/}
+
+                                        {/*<button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id)} {<JobDetail1 info={id}/>} >Check info</button>*/}
+                                        <Link to="/jobsdetail" state={{ id: item._id }} type="button" className='btn btn-secondary card-btn'>Check Info</Link>
+                                        
+                                       
+                                        
 
                                     </div>
                                 </div>
@@ -164,9 +207,12 @@ const Home = () => {
 
                  
                     <NavLink to="/jobslist" className="btn btn-primary btn-lg-primary jobsbutton">Check All Listed Jobs</NavLink>
+                    
                     <br></br>
 
                     <br></br>
+
+                  {/*  <Link to="/example1" state={{ from: "Hello World" }}>Click Me</Link>*/}
 
                 </div>
 
@@ -178,7 +224,7 @@ const Home = () => {
             <div className='container-flex categories'>
 
                 <br></br>
-                <h1 className="jobsheading1">Categories</h1>
+                <h1 className="jobsheading1">Categories </h1>
                 <div className="container">
                     <div className="row">
                         <div className='col-lg-3 col-md-6 col-sm-6'>

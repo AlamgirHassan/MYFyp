@@ -1,14 +1,31 @@
 .img1
 {
-    width:200px;
-    height:200px;
+    width:220px;
+    height:220px;
     margin-top:30px;
 }
 .border img {
-    border-radius: 100%;
+    border-radius: 5%;
   }
+.myimg
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
   .profilecontainer
   {
       background-color: white;
       border-radius: 9px;
+  }
+
+  @media only screen and (max-width: 750px) {
+
+.caddress
+{
+    font-size:11px;
+    width: 340px;
+}
+
   }

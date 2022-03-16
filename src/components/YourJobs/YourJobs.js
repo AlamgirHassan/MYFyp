@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import Footer from '../Footer/Footer';
-import { NavLink,useNavigate } from "react-router-dom"
+import { NavLink,useNavigate,Link } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.css'
 import "./YourJobs.css"
 import img1 from '../../images/cover_img.jpg'
@@ -60,6 +60,7 @@ const YourJobs = () => {
         }
         catch (error) {
             console.log(error);
+            
         }
 
 
@@ -109,6 +110,7 @@ const YourJobs = () => {
         }
         catch (error) {
             console.log(error);
+            back('/');
         }
 
     }
@@ -144,7 +146,8 @@ const YourJobs = () => {
                                         </div>
                                         <br></br>
 
-                                        <button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id,item.recruiterEmail)}>Check info</button>
+                                        {/*<button type="button" className="btn btn-secondary card-btn" onClick={() =>clickjob (item._id,item.recruiterEmail)}>Check info</button>*/}
+                                        <Link to="/jobsdetail" state={{ id: item._id }} type="button" className='btn btn-secondary card-btn'>Check Info</Link>
                                         <button type='button' to="#" className="btn btn-success card-btn" onClick={() =>editjob (item._id,item.recruiterEmail)}>Edit Job</button>
                                         <button type='button' to="#" className="btn btn-danger card-btn" onClick={() =>deletejobdata (item._id)}>Delete Job</button>
                                     </div>

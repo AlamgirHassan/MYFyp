@@ -18,6 +18,7 @@ const RecruiterEditInformation = () => {
     const [url, seturl] = useState();
     const [address, setaddress] = useState();
     const [message, setmessage] = useState(null);
+    const[image,setimage]=useState();
     function is_url(str) {
         var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
@@ -35,6 +36,7 @@ const RecruiterEditInformation = () => {
         }
         else {
             try {
+                console.log("Phone ",phonenumber )
                 const res = await fetch("/recruiter/update/" + email, {
                     method: "PUT",
                     headers: {
@@ -58,14 +60,18 @@ const RecruiterEditInformation = () => {
                 }
                 else if (res.status === 201) {
                     console.log(mydata.message);
-                    back('/rprofile');
+                    window.location.href="/rprofile"
 
                 }
-
             }
             catch (error) {
                 console.log(error);
             }
+            /*console.log("Name : ",name);
+            console.log("Address :",address);
+            console.log("Phone : ",phonenumber);
+            console.log("url : ",url);
+            console.log("Country : ",country);*/
         }
     }
 
@@ -104,12 +110,15 @@ const RecruiterEditInformation = () => {
                 setcountry(mydata.message.country);
                 seturl(mydata.message.websiteurl);
                 setaddress(mydata.message.address);
+                setimage(mydata.message.image);
 
             }
 
 
         }
         catch (error) {
+            console.log('Error : ',error);
+            back('/');
 
         }
     }
@@ -134,15 +143,12 @@ const RecruiterEditInformation = () => {
 
 
                             <h3>{recruiter}</h3>
-                            <img src={android} className='edtuserimage rounded-circle' alt="Image" />
+                            <img src={`http://localhost:8000/recruiter_img/${image}`} className='edtuserimage' alt="Image" />
 
                         </div>
 
                         {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
-                        <input className="" type="file" accept="image/*" id="formFile" name="image" required value="" />
-                        <div className="invalid-feedback">
-                            Please upload your Image.
-                        </div>
+                        
                         <div className="row">
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Company Name</label>

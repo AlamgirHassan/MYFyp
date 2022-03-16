@@ -7,8 +7,11 @@ import Loading from '../othercomponents/Loading';
 
 const RecruiterRegisteration = () => {
     const back = useNavigate();
+    const [recruiterinfo, setrecruiterinfo] = useState({
+        image: []
+    })
     const [recruiter, setrecruiter] = useState({
-        name: "", email: "", address: "", phonenumber: "", password: "", cpassword: "", country: "Afghanistan", image: "", websiteurl: "",
+        name: "", email: "", address: "", phonenumber: "", password: "", cpassword: "", country: "Afghanistan", websiteurl: "",
     })
     const [message, setmessage] = useState(null);
     const [error, seterror] = useState(false);
@@ -28,11 +31,20 @@ const RecruiterRegisteration = () => {
             '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
         return !!pattern.test(str);
     }
+    const handleInputs1 = (e) => {
+        console.log(e);
+
+        setrecruiterinfo({
+            ...recruiterinfo,
+            image: e.target.files[0]
+        
+        })
+    }
     const PostData = async (e) => {
         e.preventDefault();
         setloading(true);
         const { email, password, name, address, phonenumber, cpassword, country, websiteurl } = recruiter;
-        
+        const { image } = recruiterinfo;
         if (password !== cpassword) {
             setmessage("Passwords do not match");
             setloading(false);
@@ -46,7 +58,7 @@ const RecruiterRegisteration = () => {
             setmessage(null);
 
             try {
-                const res = await fetch("/recruiter/register", {
+                /*const res = await fetch("/recruiter/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -64,7 +76,22 @@ const RecruiterRegisteration = () => {
 
 
                     })
+                });*/
+                const formdata = new FormData();
+                formdata.append("name", name);
+                formdata.append("email", email);
+                formdata.append("country", country);
+                formdata.append("address", address);
+                formdata.append("phonenumber", phonenumber);
+                formdata.append("url", websiteurl);
+                formdata.append("password", password);
+                formdata.append("image_url", image);
+                const res = await fetch("/recruiter/register", {
+                    method: "POST",
+                    body: formdata
                 });
+
+                //const data = await res.json();
                 const data = await res.json();
                 console.log("Data : ",data);
                 if (res.status == 422 || !data) {
@@ -430,7 +457,7 @@ const RecruiterRegisteration = () => {
                             </div>
                             <div className="col">
                                 <label for="exampleFormControlInput1" className="form-label">Company Logo</label>
-                                <input className="form-control" type="file" accept='image/*' id="formFile" name="image" value={recruiter.image} onChange={handleInputs} required />
+                                <input className="form-control" type="file" accept='image/*' id="formFile" name="image" value={recruiter.image} onChange={handleInputs1} required />
                                 <div className="invalid-feedback">
                                     Please provide your company logo.
                                 </div>
